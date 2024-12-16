@@ -1,0 +1,201 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6865993047229935125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 677
+    y: 339
+    width: 190
+    height: 115
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - 
+  parentSentenceNodes:
+  - {fileID: 4244988966163865286}
+  childSentenceNodes:
+  - {fileID: -42687928508219974}
+--- !u!114 &-5097420270056895758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 118
+    y: 406
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: 
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: 4244988966163865286}
+  childNodes: []
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &-3345720360097077296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 119
+    y: 151
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: 
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: 4244988966163865286}
+  childNodes: []
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &-42687928508219974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 1013
+    y: 198
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: 
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: 7737556937390695778}
+  - {fileID: -6865993047229935125}
+  childNodes: []
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
+  m_Name: New Kulibin Space Dialog System Graph
+  m_EditorClassIdentifier: 
+  nodesList:
+  - {fileID: 4244988966163865286}
+  - {fileID: -3345720360097077296}
+  - {fileID: -5097420270056895758}
+  - {fileID: 7737556937390695778}
+  - {fileID: -6865993047229935125}
+  - {fileID: -42687928508219974}
+  nodeToDrawLineFrom: {fileID: 0}
+  linePosition: {x: 0, y: 0}
+--- !u!114 &4244988966163865286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 389
+    y: 230
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: 
+    characterSprite: {fileID: 0}
+  parentNodes: []
+  childNodes:
+  - {fileID: 7737556937390695778}
+  - {fileID: -3345720360097077296}
+  - {fileID: -5097420270056895758}
+  - {fileID: -6865993047229935125}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &7737556937390695778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 681
+    y: 127
+    width: 190
+    height: 115
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - 
+  parentSentenceNodes:
+  - {fileID: 4244988966163865286}
+  childSentenceNodes:
+  - {fileID: -42687928508219974}
