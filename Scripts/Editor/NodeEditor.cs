@@ -11,32 +11,22 @@ namespace KulibinSpace.DialogSystem {
 
         private static DialogNodeGraph graph;
         private Node currentNode;
-
         private GUIStyle nodeStyle;
         private GUIStyle selectedNodeStyle;
-
         private GUIStyle labelStyle;
-
         private Rect selectionRect;
         private Vector2 mouseClickPosition;
-
         private Vector2 graphOffset;
         private Vector2 graphDrag;
-
         private const float nodeWidth = 190f;
         private const float nodeHeight = 135f;
-
         private const float connectingLineWidth = 2f;
         private const float connectingLineArrowSize = 8f;
-
         private const int lableFontSize = 12;
-
         private const int nodePadding = 20;
         private const int nodeBorder = 10;
-
         private const float gridLargeLineSpacing = 100f;
         private const float gridSmallLineSpacing = 25;
-
         private bool isSelecting = false;
 
         /// <summary>
@@ -44,19 +34,16 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void OnEnable () {
             Selection.selectionChanged += ChangeEditorWindowOnSelection;
-
             nodeStyle = new GUIStyle {
                 padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding),
                 border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder)
             };
             nodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node) as Texture2D;
-
             selectedNodeStyle = new GUIStyle {
                 border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder),
                 padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding)
             };
             selectedNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode) as Texture2D;
-
             labelStyle = new GUIStyle {
                 alignment = TextAnchor.MiddleLeft,
                 fontSize = lableFontSize
@@ -344,9 +331,7 @@ namespace KulibinSpace.DialogSystem {
                 Node node = GetHoveredNode(currentEvent.mousePosition);
                 if (node != null) {
                     if (graph.nodeToDrawLineFrom.CanAddAsChildren(node) && node.CanAddAsParent(graph.nodeToDrawLineFrom)) {
-                        Debug.Log("Node Editor: добавляю к потомкам");
                         graph.nodeToDrawLineFrom.AddToChildConnectedNode(node);
-                        Debug.Log("Node Editor: добавляю к родителям");
                         node.AddToParentConnectedNode(graph.nodeToDrawLineFrom);
                     }
                 }
@@ -369,7 +354,6 @@ namespace KulibinSpace.DialogSystem {
         private void SelectNodesBySelectionRect (Vector2 mousePosition) {
             if (isSelecting) {
                 selectionRect = new Rect(mouseClickPosition.x, mouseClickPosition.y, mousePosition.x - mouseClickPosition.x, mousePosition.y - mouseClickPosition.y);
-                //EditorGUI.DrawRect(selectionRect, new Color(0, 0, 0, 0.7f));
                 Handles.DrawSolidRectangleWithOutline(selectionRect, new Color(0, 0, 0, 0.05f), Color.gray / 2);
                 foreach (Node node in graph.nodes) {
                     node.isSelected = selectionRect.Contains(node.rect.position);
@@ -396,13 +380,13 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="mousePosition"></param>
         private void ShowContextMenu (Vector2 mousePosition) {
-            Debug.Log("Show context menu");
             GenericMenu contextMenu = new GenericMenu();
             contextMenu.AddItem(new GUIContent("Create Sentence Node"), false, CreateSentenceNode, mousePosition);
             contextMenu.AddItem(new GUIContent("Create Answer Node"), false, CreateAnswerNode, mousePosition);
             contextMenu.AddSeparator("");
             contextMenu.AddItem(new GUIContent("Select All Nodes"), false, SelectAllNodes, mousePosition);
             contextMenu.AddItem(new GUIContent("Remove Selected Nodes"), false, RemoveSelectedNodes, mousePosition);
+            contextMenu.AddItem(new GUIContent("Remove Connections inbetween Nodes"), false, RemoveConnections, mousePosition);
             contextMenu.ShowAsContext();
         }
 
@@ -436,6 +420,17 @@ namespace KulibinSpace.DialogSystem {
         }
 
         /// <summary>
+        /// Remove all connections between selected nodes
+        /// </summary>
+        private void RemoveConnections (object userData) {
+            foreach (Node node in graph.nodes) {
+                if (node.isSelected) node.NotifyConnectedToRemove();
+            }
+            GUI.changed = true;
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
         /// Remove all selected nodes
         /// </summary>
         /// <param name="userData"></param>
@@ -451,8 +446,8 @@ namespace KulibinSpace.DialogSystem {
                 nodeTodelete.NotifyConnectedToRemove();
                 graph.nodes.Remove(nodeTodelete);
                 DestroyImmediate(nodeTodelete, true);
-                AssetDatabase.SaveAssets();
             }
+            AssetDatabase.SaveAssets();
         }
 
         /// <summary>

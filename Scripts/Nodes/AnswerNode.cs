@@ -102,7 +102,7 @@ namespace KulibinSpace.DialogSystem {
             }
             answers.RemoveAt(amountOfAnswers - 1);
             if (childSentenceNodes.Count == amountOfAnswers) {
-                childSentenceNodes[amountOfAnswers - 1].RemoveParent(this);
+                childSentenceNodes[amountOfAnswers - 1].RemoveFromParents(this);
                 childSentenceNodes.RemoveAt(amountOfAnswers - 1);
             }
             amountOfAnswers--;
@@ -166,20 +166,21 @@ namespace KulibinSpace.DialogSystem {
             return par != null && par != this && !parentSentenceNodes.Exists(x => x == par);
         }
 
+        // becouse every connection is duplicated on its visavi
         public override void NotifyConnectedToRemove () {
             foreach(SentenceNode par in parentSentenceNodes) {
-                par.RemoveChild(this);
+                par.RemoveFromChildren(this);
             }
             foreach(SentenceNode par in childSentenceNodes) {
-                par.RemoveParent(this);
+                par.RemoveFromParents(this);
             }
         }
 
-        public override void RemoveParent (Node par) {
+        public override void RemoveFromParents (Node par) {
             if (par != null && par != this && par is SentenceNode snode) parentSentenceNodes.Remove(snode);
         }
 
-        public override void RemoveChild (Node par) {
+        public override void RemoveFromChildren (Node par) {
             if (par != null && par != this && par is SentenceNode snode) childSentenceNodes.Remove(snode);
         }
 

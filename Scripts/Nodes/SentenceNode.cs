@@ -197,19 +197,32 @@ namespace KulibinSpace.DialogSystem {
             return ret;
         }
 
-        public override void RemoveParent (Node par) {
+        public override void RemoveFromParents (Node par) {
             parentNodes.Remove(par);
         }
 
-        public override void RemoveChild (Node par) {
+        public override void RemoveFromChildren (Node par) {
             childNodes.Remove(par);
         }
 
         public override void NotifyConnectedToRemove () {
-            foreach (Node par in parentNodes) par.RemoveChild(this);
-            foreach (Node par in childNodes) par.RemoveParent(this);
+            // deconnect parents
+            Queue<Node> queue = new Queue<Node>();
+            foreach (Node node in parentNodes) queue.Enqueue(node);
+            while (queue.Count > 0) {
+                Node node = queue.Dequeue();
+                node.RemoveFromChildren(this);
+                RemoveFromParents(node);
+            }
+            // deconnect children nodes
+            queue = new Queue<Node>();
+            foreach (Node node in childNodes) queue.Enqueue(node);
+            while (queue.Count > 0) {
+                Node node = queue.Dequeue();
+                node.RemoveFromParents(this);
+                RemoveFromChildren(node);
+            }
         }
-
 
         public bool IsConnectedToParent (Node par) {
             return par != null && par != this && parentNodes.Exists(x => x == par);

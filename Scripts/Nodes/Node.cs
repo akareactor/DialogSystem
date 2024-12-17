@@ -39,8 +39,8 @@ namespace KulibinSpace.DialogSystem {
         public virtual bool CanAddAsChildren (Node par) { return true; }
         public virtual bool CanAddAsParent (Node par) { return true; }
         public virtual void NotifyConnectedToRemove () {}
-        public virtual void RemoveParent (Node par) {}
-        public virtual void RemoveChild (Node par) {}
+        public virtual void RemoveFromParents (Node par) {}
+        public virtual void RemoveFromChildren (Node par) {}
 
         /// <summary>
         /// Drag node
