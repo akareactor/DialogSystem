@@ -6,7 +6,7 @@ namespace KulibinSpace.DialogSystem {
     [CreateAssetMenu(menuName = "Kulibin Space/Scriptable Objects/Dialog/Node Graph", fileName = "New Kulibin Space Dialog System Graph")]
 
     public class DialogNodeGraph : ScriptableObject {
-        public List<Node> nodesList = new List<Node>();
+        public List<Node> nodes = new();
 
 #if UNITY_EDITOR
 
@@ -28,7 +28,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="delta"></param>
         public void DragAllSelectedNodes (Vector2 delta) {
-            foreach (var node in nodesList) {
+            foreach (var node in nodes) {
                 if (node.isSelected) {
                     node.DragNode(delta);
                 }
@@ -41,7 +41,7 @@ namespace KulibinSpace.DialogSystem {
         /// <returns></returns>
         public int GetAmountOfSelectedNodes () {
             int amount = 0;
-            foreach (Node node in nodesList) {
+            foreach (Node node in nodes) {
                 if (node.isSelected) {
                     amount++;
                 }

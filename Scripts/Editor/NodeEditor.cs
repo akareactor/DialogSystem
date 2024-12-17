@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Codice.CM.Client.Differences.Merge;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace KulibinSpace.DialogSystem {
 
     public class NodeEditor : EditorWindow {
 
-        private static DialogNodeGraph currentNodeGraph;
+        private static DialogNodeGraph graph;
         private Node currentNode;
 
         private GUIStyle nodeStyle;
@@ -17,7 +18,7 @@ namespace KulibinSpace.DialogSystem {
         private GUIStyle labelStyle;
 
         private Rect selectionRect;
-        private Vector2 mouseScrollClickPosition;
+        private Vector2 mouseClickPosition;
 
         private Vector2 graphOffset;
         private Vector2 graphDrag;
@@ -36,7 +37,7 @@ namespace KulibinSpace.DialogSystem {
         private const float gridLargeLineSpacing = 100f;
         private const float gridSmallLineSpacing = 25;
 
-        private bool isScrollWheelDragging = false;
+        private bool isSelecting = false;
 
         /// <summary>
         /// Define nodes and lable style parameters on enable
@@ -44,19 +45,22 @@ namespace KulibinSpace.DialogSystem {
         private void OnEnable () {
             Selection.selectionChanged += ChangeEditorWindowOnSelection;
 
-            nodeStyle = new GUIStyle();
+            nodeStyle = new GUIStyle {
+                padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding),
+                border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder)
+            };
             nodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node) as Texture2D;
-            nodeStyle.padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding);
-            nodeStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder);
 
-            selectedNodeStyle = new GUIStyle();
+            selectedNodeStyle = new GUIStyle {
+                border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder),
+                padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding)
+            };
             selectedNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode) as Texture2D;
-            selectedNodeStyle.padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding);
-            selectedNodeStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder);
 
-            labelStyle = new GUIStyle();
-            labelStyle.alignment = TextAnchor.MiddleLeft;
-            labelStyle.fontSize = lableFontSize;
+            labelStyle = new GUIStyle {
+                alignment = TextAnchor.MiddleLeft,
+                fontSize = lableFontSize
+            };
             labelStyle.normal.textColor = Color.white;
         }
 
@@ -78,20 +82,20 @@ namespace KulibinSpace.DialogSystem {
         [OnOpenAsset(0)]
         public static bool OnDoubleClickAsset (int instanceID, int line) {
             DialogNodeGraph nodeGraph = EditorUtility.InstanceIDToObject(instanceID) as DialogNodeGraph;
-            if (currentNodeGraph != null) {
+            if (graph != null) {
                 SetUpNodes();
             }
             if (nodeGraph != null) {
                 OpenWindow();
-                currentNodeGraph = nodeGraph;
+                graph = nodeGraph;
                 SetUpNodes();
                 return true;
             }
             return false;
         }
 
-        public static void SetCurrentNodeGraph (DialogNodeGraph nodeGraph) {
-            currentNodeGraph = nodeGraph;
+        public static void SetGraph (DialogNodeGraph nodeGraph) {
+            graph = nodeGraph;
         }
 
         /// <summary>
@@ -108,7 +112,7 @@ namespace KulibinSpace.DialogSystem {
         /// Rendering and handling GUI events
         /// </summary>
         private void OnGUI () {
-            if (currentNodeGraph != null) {
+            if (graph != null) {
                 DrawDraggedLine();
                 DrawNodeConnection();
                 DrawGridBackground(gridSmallLineSpacing, 0.2f, Color.gray);
@@ -123,7 +127,7 @@ namespace KulibinSpace.DialogSystem {
         /// Setting up nodes when opening the editor
         /// </summary>
         private static void SetUpNodes () {
-            foreach (Node node in currentNodeGraph.nodesList) {
+            foreach (Node node in graph.nodes) {
                 if (node.GetType() == typeof(AnswerNode)) {
                     AnswerNode answerNode = (AnswerNode)node;
                     answerNode.CalculateAmountOfAnswers();
@@ -137,26 +141,27 @@ namespace KulibinSpace.DialogSystem {
         }
 
         /// <summary>
-        /// Draw connection line when we drag it
+        /// Draw connection line during dragging
         /// </summary>
         private void DrawDraggedLine () {
-            if (currentNodeGraph.linePosition != Vector2.zero) {
-                Handles.DrawBezier(currentNodeGraph.nodeToDrawLineFrom.rect.center, currentNodeGraph.linePosition,
-                   currentNodeGraph.nodeToDrawLineFrom.rect.center, currentNodeGraph.linePosition,
+            if (graph.linePosition != Vector2.zero) {
+                Handles.DrawBezier(graph.nodeToDrawLineFrom.rect.center, graph.linePosition,
+                   graph.nodeToDrawLineFrom.rect.center, graph.linePosition,
                    Color.white, null, connectingLineWidth);
             }
         }
 
         /// <summary>
-        /// Draw connections in the editor window between nodes
+        /// Draw connections between nodes
         /// </summary>
         private void DrawNodeConnection () {
-            if (currentNodeGraph.nodesList == null) return;
-            foreach (Node node in currentNodeGraph.nodesList) {
-                if (node is AnswerNode answerNode) {
-                    DrawAnswerNode(answerNode);
-                } else if (node is SentenceNode sentenceNode) {
-                    DrawSentenceNode(sentenceNode);
+            if (graph.nodes != null) {
+                foreach (Node node in graph.nodes) {
+                    if (node is AnswerNode answerNode) {
+                        DrawAnswerNode(answerNode);
+                    } else if (node is SentenceNode sentenceNode) {
+                        DrawSentenceNode(sentenceNode);
+                    }
                 }
             }
 
@@ -221,17 +226,20 @@ namespace KulibinSpace.DialogSystem {
         /// Call Draw method from all existing nodes in nodes list
         /// </summary>
         private void DrawNodes () {
-            if (currentNodeGraph.nodesList == null) {
-                return;
-            }
-            foreach (Node node in currentNodeGraph.nodesList) {
-                if (!node.isSelected) {
-                    node.Draw(nodeStyle, labelStyle);
-                } else {
-                    node.Draw(selectedNodeStyle, labelStyle);
+            if (graph.nodes != null) {
+                foreach (Node node in graph.nodes) {
+                    if (!node.isSelected) {
+                        node.Draw(nodeStyle, labelStyle);
+                    } else {
+                        node.Draw(selectedNodeStyle, labelStyle);
+                    }
                 }
+                GUI.changed = true;
             }
-            GUI.changed = true;
+        }
+
+        void DeselectAll () {
+            foreach (Node node in graph.nodes) { if (node.isSelected) node.isSelected = false; }
         }
 
         /// <summary>
@@ -240,37 +248,12 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="currentEvent"></param>
         private void ProcessEvents (Event currentEvent) {
             graphDrag = Vector2.zero;
-            if (currentNode == null || !currentNode.isDragging) {
-                currentNode = GetHighlightedNode(currentEvent.mousePosition);
-            }
-            if (currentNode == null || currentNodeGraph.nodeToDrawLineFrom != null) {
-                ProcessNodeEditorEvents(currentEvent);
-            } else {
-                currentNode.ProcessNodeEvents(currentEvent);
-            }
-        }
-
-        /// <summary>
-        /// Process all events
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessNodeEditorEvents (Event currentEvent) {
-            // Debug.Log("NodeEditor ProcessNodeEditorEvents"); // 2024-12-13 12:02:36 работает всегда
             switch (currentEvent.type) {
-                case EventType.MouseDown:
-                    ProcessMouseDownEvent(currentEvent);
-                    break;
-                case EventType.MouseUp:
-                    ProcessMouseUpEvent(currentEvent);
-                    break;
-                case EventType.MouseDrag:
-                    ProcessMouseDragEvent(currentEvent);
-                    break;
-                case EventType.Repaint:
-                    SelectNodesBySelectionRect(currentEvent.mousePosition);
-                    break;
-                default:
-                    break;
+                case EventType.MouseDown: ProcessMouseDownEvent(currentEvent); break;
+                case EventType.MouseUp: ProcessMouseUpEvent(currentEvent); break;
+                case EventType.MouseDrag: ProcessMouseDragEvent(currentEvent); break;
+                case EventType.Repaint: SelectNodesBySelectionRect(currentEvent.mousePosition); break;
+                default: break;
             }
         }
 
@@ -279,43 +262,19 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="currentEvent"></param>
         private void ProcessMouseDownEvent (Event currentEvent) {
-            Debug.Log("NodeEditor ProcessMouseDownEvent");
-            if (currentEvent.button == 1) {
-                ProcessRightMouseDownEvent(currentEvent);
-            } else if (currentEvent.button == 0 && currentNodeGraph.nodesList != null) {
-                ProcessLeftMouseDownEvent(currentEvent);
-            } else if (currentEvent.button == 2) {
-                ProcessScrollWheelDownEvent(currentEvent);
+            if (currentEvent.button == 0) { // LMB
+                if (graph.nodes != null) currentNode = GetHoveredNode(currentEvent.mousePosition);
+                mouseClickPosition = currentEvent.mousePosition;
+                if (currentNode == null) isSelecting = true; // starting a multiselection
+            } else if (currentEvent.button == 1) { // RMB
+                Node node = GetHoveredNode(currentEvent.mousePosition);
+                if (node != null) {
+                    graph.SetNodeToDrawLineFromAndLinePosition(node, currentEvent.mousePosition);
+                } else {
+                    ShowContextMenu(currentEvent.mousePosition);
+                }
+            } else if (currentEvent.button == 2) { // Wheel
             }
-        }
-
-        /// <summary>
-        /// Process right mouse click event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessRightMouseDownEvent (Event currentEvent) {
-            Debug.Log("NodeEditor ProcessRightMouseDownEvent");
-            if (GetHighlightedNode(currentEvent.mousePosition) == null) {
-                ShowContextMenu(currentEvent.mousePosition);
-            }
-        }
-
-        /// <summary>
-        /// Process left mouse click event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessLeftMouseDownEvent (Event currentEvent) {
-            ProcessNodeSelection(currentEvent.mousePosition);
-        }
-
-        /// <summary>
-        /// Process scroll wheel down event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        private void ProcessScrollWheelDownEvent (Event currentEvent) {
-            mouseScrollClickPosition = currentEvent.mousePosition;
-            isScrollWheelDragging = true;
         }
 
         /// <summary>
@@ -323,32 +282,33 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="currentEvent"></param>
         private void ProcessMouseUpEvent (Event currentEvent) {
-            if (currentEvent.button == 1) {
-                ProcessRightMouseUpEvent(currentEvent);
-            } else if (currentEvent.button == 2) {
-                ProcessScrollWheelUpEvent(currentEvent);
+            if (currentEvent.button == 0) {
+                // clear selection, leave one selected node
+                if (graph.nodes != null) {
+                    if (!isSelecting) {
+                        // don't know how mush nodes are selected, so just apply common deselect
+                        currentNode = GetHoveredNode(currentEvent.mousePosition);
+                        if (currentNode == null) {
+                            DeselectAll();
+                        } else {
+                            if (!currentEvent.shift && !draggingSelectedNodes) DeselectAll();
+                            currentNode.isSelected = true;
+                        }
+                    }
+                }
+                draggingSelectedNodes = false;
+                selectionRect = new Rect(0, 0, 0, 0);
+                isSelecting = false;
+            } else if (currentEvent.button == 1) { // RMB
+                if (graph.nodeToDrawLineFrom != null) {
+                    CheckLineConnection(currentEvent);
+                    ClearDraggedLine();
+                }
+            } else if (currentEvent.button == 2) { // Wheel
             }
         }
 
-        /// <summary>
-        /// Process right mouse up event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessRightMouseUpEvent (Event currentEvent) {
-            if (currentNodeGraph.nodeToDrawLineFrom != null) {
-                CheckLineConnection(currentEvent);
-                ClearDraggedLine();
-            }
-        }
-
-        /// <summary>
-        /// Process scroll wheel up event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessScrollWheelUpEvent (Event currentEvent) {
-            selectionRect = new Rect(0, 0, 0, 0);
-            isScrollWheelDragging = false;
-        }
+        bool draggingSelectedNodes = false;
 
         /// <summary>
         /// Process mouse drag event
@@ -356,43 +316,23 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="currentEvent"></param>
         /// <exception cref="NotImplementedException"></exception>
         private void ProcessMouseDragEvent (Event currentEvent) {
-            if (currentEvent.button == 0) {
-                ProcessLeftMouseDragEvent(currentEvent);
-            } else if (currentEvent.button == 1) {
-                ProcessRightMouseDragEvent(currentEvent);
-            }
-        }
-
-        /// <summary>
-        /// Process left mouse drag event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessLeftMouseDragEvent (Event currentEvent) {
-            SelectNodesBySelectionRect(currentEvent.mousePosition);
-            graphDrag = currentEvent.delta;
-            foreach (var node in currentNodeGraph.nodesList) {
-                node.DragNode(graphDrag);
-            }
-            GUI.changed = true;
-        }
-
-        /// <summary>
-        /// Process right mouse drag event
-        /// </summary>
-        /// <param name="currentEvent"></param>
-        private void ProcessRightMouseDragEvent (Event currentEvent) {
-            if (currentNodeGraph.nodeToDrawLineFrom != null) {
-                DragConnectiongLine(currentEvent.delta);
+            if (currentEvent.button == 0) { // LMB
+                if (isSelecting) {
+                    SelectNodesBySelectionRect(currentEvent.mousePosition);
+                } else if (currentNode != null && currentNode.isSelected) {
+                    draggingSelectedNodes = true;
+                    graph.DragAllSelectedNodes(currentEvent.delta);
+                }
                 GUI.changed = true;
+            } else if (currentEvent.button == 1) { // RMB
+                if (graph.nodeToDrawLineFrom != null) {
+                    graph.linePosition += currentEvent.delta;
+                    GUI.changed = true;
+                }
+            } else if (currentEvent.button == 2) { // Wheel
+                graphDrag = currentEvent.delta;
+                foreach (var node in graph.nodes) node.DragNode(graphDrag); // drag all nodes to imitate canvas movement
             }
-        }
-
-        /// <summary>
-        /// Drag connecting line from the node
-        /// </summary>
-        /// <param name="delta"></param>
-        private void DragConnectiongLine (Vector2 delta) {
-            currentNodeGraph.linePosition += delta;
         }
 
         /// <summary>
@@ -400,14 +340,14 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="currentEvent"></param>
         private void CheckLineConnection (Event currentEvent) {
-            if (currentNodeGraph.nodeToDrawLineFrom != null) {
-                Node node = GetHighlightedNode(currentEvent.mousePosition);
+            if (graph.nodeToDrawLineFrom != null) {
+                Node node = GetHoveredNode(currentEvent.mousePosition);
                 if (node != null) {
-                    if (currentNodeGraph.nodeToDrawLineFrom.CanAddAsChildren(node) && node.CanAddAsParent(currentNodeGraph.nodeToDrawLineFrom)) {
+                    if (graph.nodeToDrawLineFrom.CanAddAsChildren(node) && node.CanAddAsParent(graph.nodeToDrawLineFrom)) {
                         Debug.Log("Node Editor: добавляю к потомкам");
-                        currentNodeGraph.nodeToDrawLineFrom.AddToChildConnectedNode(node);
+                        graph.nodeToDrawLineFrom.AddToChildConnectedNode(node);
                         Debug.Log("Node Editor: добавляю к родителям");
-                        node.AddToParentConnectedNode(currentNodeGraph.nodeToDrawLineFrom);
+                        node.AddToParentConnectedNode(graph.nodeToDrawLineFrom);
                     }
                 }
             }
@@ -417,26 +357,9 @@ namespace KulibinSpace.DialogSystem {
         /// Clear dragged line
         /// </summary>
         private void ClearDraggedLine () {
-            currentNodeGraph.nodeToDrawLineFrom = null;
-            currentNodeGraph.linePosition = Vector2.zero;
+            graph.nodeToDrawLineFrom = null;
+            graph.linePosition = Vector2.zero;
             GUI.changed = true;
-        }
-
-        /// <summary>
-        /// Process node selection, add to selected node list if node is selected
-        /// </summary>
-        /// <param name="mouseClickPosition"></param>
-        private void ProcessNodeSelection (Vector2 mouseClickPosition) {
-            Node clickedNode = GetHighlightedNode(mouseClickPosition);
-            //unselect all nodes when clicking outside a node
-            if (clickedNode == null) {
-                foreach (Node node in currentNodeGraph.nodesList) {
-                    if (node.isSelected) {
-                        node.isSelected = false;
-                    }
-                }
-                return;
-            }
         }
 
         /// <summary>
@@ -444,14 +367,12 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="mousePosition"></param>
         private void SelectNodesBySelectionRect (Vector2 mousePosition) {
-            if (!isScrollWheelDragging) {
-                return;
-            }
-            selectionRect = new Rect(mouseScrollClickPosition.x, mouseScrollClickPosition.y, mousePosition.x - mouseScrollClickPosition.x, mousePosition.y - mouseScrollClickPosition.y);
-            EditorGUI.DrawRect(selectionRect, new Color(0, 0, 0, 0.5f));
-            foreach (Node node in currentNodeGraph.nodesList) {
-                if (selectionRect.Contains(node.rect.position)) {
-                    node.isSelected = true;
+            if (isSelecting) {
+                selectionRect = new Rect(mouseClickPosition.x, mouseClickPosition.y, mousePosition.x - mouseClickPosition.x, mousePosition.y - mouseClickPosition.y);
+                //EditorGUI.DrawRect(selectionRect, new Color(0, 0, 0, 0.7f));
+                Handles.DrawSolidRectangleWithOutline(selectionRect, new Color(0, 0, 0, 0.05f), Color.gray / 2);
+                foreach (Node node in graph.nodes) {
+                    node.isSelected = selectionRect.Contains(node.rect.position);
                 }
             }
         }
@@ -461,11 +382,8 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="mousePosition"></param>
         /// <returns></returns>
-        private Node GetHighlightedNode (Vector2 mousePosition) {
-            if (currentNodeGraph.nodesList.Count == 0) {
-                return null;
-            }
-            foreach (Node node in currentNodeGraph.nodesList) {
+        private Node GetHoveredNode (Vector2 mousePosition) {
+            foreach (Node node in graph.nodes) {
                 if (node.rect.Contains(mousePosition)) {
                     return node;
                 }
@@ -511,7 +429,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="userData"></param>
         private void SelectAllNodes (object userData) {
-            foreach (Node node in currentNodeGraph.nodesList) {
+            foreach (Node node in graph.nodes) {
                 node.isSelected = true;
             }
             GUI.changed = true;
@@ -523,7 +441,7 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="userData"></param>
         private void RemoveSelectedNodes (object userData) {
             Queue<Node> nodeDeletionQueue = new Queue<Node>();
-            foreach (Node node in currentNodeGraph.nodesList) {
+            foreach (Node node in graph.nodes) {
                 if (node.isSelected) {
                     nodeDeletionQueue.Enqueue(node);
                 }
@@ -531,7 +449,7 @@ namespace KulibinSpace.DialogSystem {
             while (nodeDeletionQueue.Count > 0) {
                 Node nodeTodelete = nodeDeletionQueue.Dequeue();
                 nodeTodelete.NotifyConnectedToRemove();
-                currentNodeGraph.nodesList.Remove(nodeTodelete);
+                graph.nodes.Remove(nodeTodelete);
                 DestroyImmediate(nodeTodelete, true);
                 AssetDatabase.SaveAssets();
             }
@@ -545,9 +463,9 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="nodeName"></param>
         private void InitialiseNode (object mousePositionObject, Node node, string nodeName) {
             Vector2 mousePosition = (Vector2)mousePositionObject;
-            currentNodeGraph.nodesList.Add(node);
-            node.Initialize(new Rect(mousePosition, new Vector2(nodeWidth, nodeHeight)), nodeName, currentNodeGraph);
-            AssetDatabase.AddObjectToAsset(node, currentNodeGraph);
+            graph.nodes.Add(node);
+            node.Initialize(new Rect(mousePosition, new Vector2(nodeWidth, nodeHeight)), nodeName, graph);
+            AssetDatabase.AddObjectToAsset(node, graph);
             AssetDatabase.SaveAssets();
         }
 
@@ -557,7 +475,7 @@ namespace KulibinSpace.DialogSystem {
         private void ChangeEditorWindowOnSelection () {
             DialogNodeGraph nodeGraph = Selection.activeObject as DialogNodeGraph;
             if (nodeGraph != null) {
-                currentNodeGraph = nodeGraph;
+                graph = nodeGraph;
                 GUI.changed = true;
             }
         }
