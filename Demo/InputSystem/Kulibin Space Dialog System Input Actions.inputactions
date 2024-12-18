@@ -1,0 +1,40 @@
+{
+    "name": "Kulibin Space Dialog System",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "978626c9-23dd-48e2-af6f-86f367f9f664",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "6c717864-0ecf-4085-8d9a-c3cd10f1052c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bd0297e5-efaa-430b-a207-1d186f8b2d64",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": []
+        }
+    ]
+}

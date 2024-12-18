@@ -6,6 +6,7 @@ namespace KulibinSpace.DialogSystem {
     [CreateAssetMenu(menuName = "Kulibin Space/Scriptable Objects/Dialog/Node Graph", fileName = "New Kulibin Space Dialog System Graph")]
 
     public class DialogNodeGraph : ScriptableObject {
+        
         public List<Node> nodes = new();
 
 #if UNITY_EDITOR
