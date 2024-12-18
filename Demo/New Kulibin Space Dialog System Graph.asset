@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-678160400840370585
+--- !u!114 &-5632482234939644296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,18 +15,109 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 459
-    y: 91
-    width: 190
-    height: 135
+    x: 442
+    y: 20
+    width: 250
+    height: 80
   isDragging: 0
   isSelected: 1
   sentence:
-    characterName: 2
-    text: 
+    characterName: Seller
+    text: May be our new brand?
     characterSprite: {fileID: 0}
-  parentNodes: []
-  childNodes: []
+  parentNodes:
+  - {fileID: 860910542965298904}
+  childNodes:
+  - {fileID: -3038212624193248107}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &-3388046701931654768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 291
+    y: 382
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: Seller
+    text: Here you are
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: 860910542965298904}
+  childNodes:
+  - {fileID: 144837447152206874}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &-3038212624193248107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 405
+    y: 179
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - Ok, take my money
+  parentSentenceNodes:
+  - {fileID: -5632482234939644296}
+  childSentenceNodes:
+  - {fileID: -2445442636312470642}
+--- !u!114 &-2445442636312470642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 648
+    y: 281
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: Seller
+    text: Here it is
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: -3038212624193248107}
+  childNodes:
+  - {fileID: 144837447152206874}
   isExternalFunc: 0
   externalFunctionName: 
 --- !u!114 &11400000
@@ -42,14 +133,47 @@ MonoBehaviour:
   m_Name: New Kulibin Space Dialog System Graph
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -678160400840370585}
-  - {fileID: 7931842505897307765}
-  - {fileID: 7978641955792474558}
-  - {fileID: 3551104867312707278}
-  - {fileID: 2789060611512443673}
+  - {fileID: 3450605565850512521}
+  - {fileID: -3038212624193248107}
+  - {fileID: 860910542965298904}
+  - {fileID: -3388046701931654768}
+  - {fileID: -5632482234939644296}
+  - {fileID: 500879870367853484}
+  - {fileID: 6215422687574203853}
+  - {fileID: -2445442636312470642}
+  - {fileID: 144837447152206874}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
---- !u!114 &2789060611512443673
+--- !u!114 &144837447152206874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 613
+    y: 452
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - Thank you!
+  parentSentenceNodes:
+  - {fileID: -2445442636312470642}
+  - {fileID: -3388046701931654768}
+  - {fileID: 3450605565850512521}
+  childSentenceNodes:
+  - {fileID: 6215422687574203853}
+--- !u!114 &500879870367853484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,82 +188,54 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 856
-    y: 146
-    width: 190
-    height: 135
+    x: 76
+    y: 26
+    width: 250
+    height: 80
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
-    text: 
-    characterSprite: {fileID: 0}
-  parentNodes:
-  - {fileID: 7931842505897307765}
-  childNodes: []
-  isExternalFunc: 0
-  externalFunctionName: 
---- !u!114 &3551104867312707278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 547
-    y: 552
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 1
-  sentence:
-    characterName: 4
-    text: 
-    characterSprite: {fileID: 0}
-  parentNodes: []
-  childNodes: []
-  isExternalFunc: 0
-  externalFunctionName: 
---- !u!114 &7931842505897307765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 166
-    y: 298
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: 1
-    text: 
+    characterName: Seller
+    text: Hello, what can I do for ya?
     characterSprite: {fileID: 0}
   parentNodes: []
   childNodes:
-  - {fileID: 2789060611512443673}
-  - {fileID: 7978641955792474558}
+  - {fileID: 860910542965298904}
   isExternalFunc: 0
   externalFunctionName: 
---- !u!114 &7978641955792474558
+--- !u!114 &860910542965298904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 26
+    y: 216
+    width: 250
+    height: 140
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - Nothning, thanks!
+  - Crisps, please
+  - Noce weather today, isnt'it?
+  - 
+  parentSentenceNodes:
+  - {fileID: 500879870367853484}
+  childSentenceNodes:
+  - {fileID: -5632482234939644296}
+  - {fileID: -3388046701931654768}
+  - {fileID: 3450605565850512521}
+--- !u!114 &3450605565850512521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,18 +250,49 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 829
-    y: 504
-    width: 190
-    height: 135
+    x: 131
+    y: 500
+    width: 250
+    height: 80
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 3
-    text: 
+    characterName: Seller
+    text: Of course, yes
     characterSprite: {fileID: 0}
   parentNodes:
-  - {fileID: 7931842505897307765}
+  - {fileID: 860910542965298904}
+  childNodes:
+  - {fileID: 144837447152206874}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &6215422687574203853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 544
+    y: 603
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: Seller
+    text: Bye
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: 144837447152206874}
   childNodes: []
   isExternalFunc: 0
   externalFunctionName: 

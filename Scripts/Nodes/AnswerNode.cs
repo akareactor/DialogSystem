@@ -8,14 +8,15 @@ namespace KulibinSpace.DialogSystem {
     public class AnswerNode : Node {
         private int amountOfAnswers = 1;
         public List<string> answers = new();
+        // typed nodes!
         public List<SentenceNode> parentSentenceNodes = new();
         public List<SentenceNode> childSentenceNodes = new();
         private const float lableFieldSpace = 18f;
-        private const float textFieldWidth = 120f;
-        private const float answerNodeWidth = 190f;
-        private const float answerNodeHeight = 115f;
-        private float currentAnswerNodeHeight = 115f;
-        private float additionalAnswerNodeHeight = 20f;
+        private const float textFieldWidth = 170f;
+        private const float answerNodeWidth = 250f;
+        private const float answerNodeHeight = 80f;
+        private float currentAnswerNodeHeight = 80f;
+        private const float additionalAnswerNodeHeight = 20f;
 
 #if UNITY_EDITOR
 
@@ -35,15 +36,22 @@ namespace KulibinSpace.DialogSystem {
         /// Draw Answer Node method
         /// </summary>
         /// <param name = "nodeStyle" ></ param >
-        /// < param name="lableStyle"></param>
-        public override void Draw (GUIStyle nodeStyle, GUIStyle lableStyle) {
-            base.Draw(nodeStyle, lableStyle);
+        /// < param name="labelStyle"></param>
+        public override void Draw (GUIStyle nodeStyle, GUIStyle labelStyle) {
+            base.Draw(nodeStyle, labelStyle);
             childSentenceNodes.RemoveAll(item => item == null);
             rect.size = new Vector2(answerNodeWidth, currentAnswerNodeHeight);
             GUILayout.BeginArea(rect, nodeStyle);
-            EditorGUILayout.LabelField("Answer Node", lableStyle);
+            // label
+            GUIStyle answerLabelStyle = new GUIStyle(labelStyle);
+            answerLabelStyle.normal.textColor = new Color (255, 165, 0, 1); // orange
+            // answers
+            EditorGUILayout.LabelField("Answer", answerLabelStyle);
             for (int i = 0; i < amountOfAnswers; i++) {
-                DrawAnswerLine(i + 1, StringConstants.GreenDot);
+                if (i < childSentenceNodes.Count)
+                    DrawAnswerLine(i + 1, StringConstants.GreenDot);
+                else
+                    DrawAnswerLine(i + 1, StringConstants.EmptyDot);
             }
             DrawAnswerNodeButtons();
             GUILayout.EndArea();
@@ -75,13 +83,17 @@ namespace KulibinSpace.DialogSystem {
         }
 
         private void DrawAnswerNodeButtons () {
-            if (GUILayout.Button("Add answer")) {
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.Space(-10);
+            if (GUILayout.Button("Add", GUILayout.Width(82))) {
                 IncreaseAmountOfAnswers();
             }
-
-            if (GUILayout.Button("Remove answer")) {
+            if (GUILayout.Button("Remove", GUILayout.Width(82))) {
                 DecreaseAmountOfAnswers();
             }
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
         }
 
         /// <summary>
@@ -135,7 +147,7 @@ namespace KulibinSpace.DialogSystem {
                     snode.AddToParentConnectedNode(this);
                     return true;
                 }
-            } else Debug.Log("Ответ пытается добавить в потомки не Сентенцию ");
+            } else Debug.Log("Answer tries to add NOT a Sentence!");
             return false;
         }
 
@@ -167,13 +179,28 @@ namespace KulibinSpace.DialogSystem {
         }
 
         // becouse every connection is duplicated on its visavi
-        public override void NotifyConnectedToRemove () {
-            foreach(SentenceNode par in parentSentenceNodes) {
-                par.RemoveFromChildren(this);
+        public override void NotifyConnectedToRemove (bool selectedOnly) {
+            // deconnect parents
+            Queue<Node> queue = new Queue<Node>();
+            foreach (Node node in parentSentenceNodes) {
+                if ((selectedOnly && node.isSelected) || !selectedOnly) queue.Enqueue(node);
             }
-            foreach(SentenceNode par in childSentenceNodes) {
-                par.RemoveFromParents(this);
+            while (queue.Count > 0) {
+                Node node = queue.Dequeue();
+                node.RemoveFromChildren(this);
+                RemoveFromParents(node);
             }
+            // deconnect children nodes
+            queue = new Queue<Node>();
+            foreach (Node node in childSentenceNodes) {
+                if ((selectedOnly && node.isSelected) || !selectedOnly) queue.Enqueue(node);
+            }
+            while (queue.Count > 0) {
+                Node node = queue.Dequeue();
+                node.RemoveFromParents(this);
+                RemoveFromChildren(node);
+            }
+
         }
 
         public override void RemoveFromParents (Node par) {

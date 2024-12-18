@@ -18,13 +18,11 @@ namespace KulibinSpace.DialogSystem {
         private Vector2 mouseClickPosition;
         private Vector2 graphOffset;
         private Vector2 graphDrag;
-        private const float nodeWidth = 190f;
-        private const float nodeHeight = 135f;
+        private const float nodeWidth = 250f;
+        private const float nodeHeight = 80f; // only new nodes take new height!
         private const float connectingLineWidth = 2f;
-        private const float connectingLineArrowSize = 8f;
-        private const int lableFontSize = 12;
-        private const int nodePadding = 20;
-        private const int nodeBorder = 10;
+        private const float connectingLineArrowSize = 6f;
+        private const int labelFontSize = 10;
         private const float gridLargeLineSpacing = 100f;
         private const float gridSmallLineSpacing = 25;
         private bool isSelecting = false;
@@ -35,18 +33,18 @@ namespace KulibinSpace.DialogSystem {
         private void OnEnable () {
             Selection.selectionChanged += ChangeEditorWindowOnSelection;
             nodeStyle = new GUIStyle {
-                padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding),
-                border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder)
+                padding = new RectOffset(15, 15, 5, 5),
+                border = new RectOffset(10, 10, 10, 10)
             };
             nodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node) as Texture2D;
             selectedNodeStyle = new GUIStyle {
-                border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder),
-                padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding)
+                padding = new RectOffset(15, 15, 5, 5),
+                border = new RectOffset(10, 10, 10, 10)
             };
             selectedNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode) as Texture2D;
             labelStyle = new GUIStyle {
                 alignment = TextAnchor.MiddleLeft,
-                fontSize = lableFontSize
+                fontSize = labelFontSize
             };
             labelStyle.normal.textColor = Color.white;
         }
@@ -252,7 +250,11 @@ namespace KulibinSpace.DialogSystem {
             if (currentEvent.button == 0) { // LMB
                 if (graph.nodes != null) currentNode = GetHoveredNode(currentEvent.mousePosition);
                 mouseClickPosition = currentEvent.mousePosition;
-                if (currentNode == null) isSelecting = true; // starting a multiselection
+                if (currentNode == null) {
+                    isSelecting = true; // starting a multiselection
+                } else {
+                    AssetDatabase.OpenAsset(currentNode); // open inspector of selected node
+                }
             } else if (currentEvent.button == 1) { // RMB
                 Node node = GetHoveredNode(currentEvent.mousePosition);
                 if (node != null) {
@@ -424,7 +426,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void RemoveConnections (object userData) {
             foreach (Node node in graph.nodes) {
-                if (node.isSelected) node.NotifyConnectedToRemove();
+                if (node.isSelected) node.NotifyConnectedToRemove(true);
             }
             GUI.changed = true;
             AssetDatabase.SaveAssets();
@@ -443,7 +445,7 @@ namespace KulibinSpace.DialogSystem {
             }
             while (nodeDeletionQueue.Count > 0) {
                 Node nodeTodelete = nodeDeletionQueue.Dequeue();
-                nodeTodelete.NotifyConnectedToRemove();
+                nodeTodelete.NotifyConnectedToRemove(false); // node is to remove, so we have to clear all connections
                 graph.nodes.Remove(nodeTodelete);
                 DestroyImmediate(nodeTodelete, true);
             }

@@ -10,7 +10,7 @@ namespace KulibinSpace.DialogSystem {
         [SerializeField] private Sentence sentence;
 
         [Space(10)]
-        // не знаю, зачем они публичные, но пока оставлю для отладки
+        // public? Let it be for debug and visual clarity
         public List<Node> parentNodes = new();
         public List<Node> childNodes = new();
 
@@ -18,12 +18,12 @@ namespace KulibinSpace.DialogSystem {
         [SerializeField] private bool isExternalFunc;
         [SerializeField] private string externalFunctionName;
 
-        private string externalButtonLable;
+        private string externalButtonLabel;
 
-        private const float lableFieldSpace = 47f;
-        private const float textFieldWidth = 100f;
+        private const float labelFieldSpace = 45f;
+        private const float textFieldWidth = 165f;
 
-        private const float externalNodeHeight = 155f;
+        //private const float externalNodeHeight = 80f;
 
         /// <summary>
         /// Returning external function name
@@ -81,23 +81,19 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="nodeStyle"></param>
         /// <param name="lableStyle"></param>
-        public override void Draw (GUIStyle nodeStyle, GUIStyle lableStyle) {
-            base.Draw(nodeStyle, lableStyle);
-
+        public override void Draw (GUIStyle nodeStyle, GUIStyle labelStyle) {
+            base.Draw(nodeStyle, labelStyle);
             GUILayout.BeginArea(rect, nodeStyle);
-
-            EditorGUILayout.LabelField("Sentence Node", lableStyle);
-
+            EditorGUILayout.LabelField("Sentence", labelStyle);
             DrawCharacterNameFieldHorizontal();
             DrawSentenceTextFieldHorizontal();
+            /*
             DrawCharacterSpriteHorizontal();
             DrawExternalFunctionTextField();
-
             if (GUILayout.Button(externalButtonLable)) {
                 isExternalFunc = !isExternalFunc;
-
             }
-
+            */
             GUILayout.EndArea();
         }
 
@@ -106,7 +102,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void DrawCharacterNameFieldHorizontal () {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Name ", GUILayout.Width(lableFieldSpace));
+            EditorGUILayout.LabelField($"Name ", GUILayout.Width(labelFieldSpace));
             sentence.characterName = EditorGUILayout.TextField(sentence.characterName, GUILayout.Width(textFieldWidth));
             EditorGUILayout.EndHorizontal();
         }
@@ -116,7 +112,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void DrawSentenceTextFieldHorizontal () {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Text ", GUILayout.Width(lableFieldSpace));
+            EditorGUILayout.LabelField($"Text ", GUILayout.Width(labelFieldSpace));
             sentence.text = EditorGUILayout.TextField(sentence.text, GUILayout.Width(textFieldWidth));
             EditorGUILayout.EndHorizontal();
         }
@@ -126,7 +122,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void DrawCharacterSpriteHorizontal () {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Sprite ", GUILayout.Width(lableFieldSpace));
+            EditorGUILayout.LabelField($"Sprite ", GUILayout.Width(labelFieldSpace));
             sentence.characterSprite = (Sprite)EditorGUILayout.ObjectField(sentence.characterSprite, typeof(Sprite), false, GUILayout.Width(textFieldWidth));
             EditorGUILayout.EndHorizontal();
         }
@@ -137,15 +133,15 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void DrawExternalFunctionTextField () {
             if (isExternalFunc) {
-                externalButtonLable = "Remove external func";
+                externalButtonLabel = "Remove external func";
                 EditorGUILayout.BeginHorizontal();
-                rect.height = externalNodeHeight;
-                EditorGUILayout.LabelField($"Func Name ", GUILayout.Width(lableFieldSpace));
+                //rect.height = externalNodeHeight;
+                EditorGUILayout.LabelField($"Func Name ", GUILayout.Width(labelFieldSpace));
                 externalFunctionName = EditorGUILayout.TextField(externalFunctionName, GUILayout.Width(textFieldWidth));
                 EditorGUILayout.EndHorizontal();
             } else {
-                externalButtonLable = "Add external func";
-                rect.height = standartHeight;
+                externalButtonLabel = "Add external func";
+                //rect.height = standartHeight;
             }
         }
 
@@ -155,16 +151,8 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="rect"></param>
         public void CheckNodeSize (float width, float height) {
             rect.width = width;
-
-            if (standartHeight == 0) {
-                standartHeight = height;
-            }
-
-            if (isExternalFunc) {
-                rect.height = externalNodeHeight;
-            } else {
-                rect.height = standartHeight;
-            }
+            if (heightStd == 0) heightStd = height;
+            rect.height = heightStd;
         }
 
         /// <summary>
@@ -205,10 +193,12 @@ namespace KulibinSpace.DialogSystem {
             childNodes.Remove(par);
         }
 
-        public override void NotifyConnectedToRemove () {
+        public override void NotifyConnectedToRemove (bool selectedOnly) {
             // deconnect parents
             Queue<Node> queue = new Queue<Node>();
-            foreach (Node node in parentNodes) queue.Enqueue(node);
+            foreach (Node node in parentNodes) {
+                if ((selectedOnly && node.isSelected) || !selectedOnly) queue.Enqueue(node);
+            }
             while (queue.Count > 0) {
                 Node node = queue.Dequeue();
                 node.RemoveFromChildren(this);
@@ -216,7 +206,9 @@ namespace KulibinSpace.DialogSystem {
             }
             // deconnect children nodes
             queue = new Queue<Node>();
-            foreach (Node node in childNodes) queue.Enqueue(node);
+            foreach (Node node in childNodes) {
+                if ((selectedOnly && node.isSelected) || !selectedOnly) queue.Enqueue(node);
+            }
             while (queue.Count > 0) {
                 Node node = queue.Dequeue();
                 node.RemoveFromParents(this);
