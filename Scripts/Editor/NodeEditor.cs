@@ -24,7 +24,7 @@ namespace KulibinSpace.DialogSystem {
         private const float connectingLineArrowSize = 6f;
         private const int labelFontSize = 10;
         private const float gridLargeLineSpacing = 100f;
-        private const float gridSmallLineSpacing = 25;
+        private const float gridSmallLineSpacing = 20;
         private bool isSelecting = false;
 
         /// <summary>

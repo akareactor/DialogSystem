@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6943751319894022039
+--- !u!114 &-7902348221181529238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,23 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
-  m_Name: Answer Node
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
   m_EditorClassIdentifier: 
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 345
-    y: 50
+    x: 649
+    y: 458
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 1
-  answers:
-  - Maybe...
-  parentSentenceNodes: []
-  childSentenceNodes:
-  - {fileID: -5632482234939644296}
+  isSelected: 0
+  sentence:
+    characterName: Seller
+    text: Cola for yoy
+    characterSprite: {fileID: 0}
+  parentNodes:
+  - {fileID: 3450605565850512521}
+  childNodes:
+  - {fileID: 144837447152206874}
+  isExternalFunc: 0
+  externalFunctionName: 
 --- !u!114 &-5632482234939644296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,19 +46,18 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 636
-    y: 59
+    x: 86
+    y: 325
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: Seller
-    text: May be our new brand?
+    text: 0. May be our new brand?
     characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 860910542965298904}
-  - {fileID: -6943751319894022039}
   childNodes:
   - {fileID: -3038212624193248107}
   isExternalFunc: 0
@@ -73,15 +77,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 629
-    y: 229
+    x: 371
+    y: 326
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: Seller
-    text: Here you are
+    text: 1. Here you are
     characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 860910542965298904}
@@ -104,8 +108,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 922
-    y: 58
+    x: 84
+    y: 452
     width: 250
     height: 80
   isDragging: 0
@@ -131,8 +135,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1196
-    y: 58
+    x: 84
+    y: 588
     width: 250
     height: 80
   isDragging: 0
@@ -145,36 +149,6 @@ MonoBehaviour:
   - {fileID: -3038212624193248107}
   childNodes:
   - {fileID: 144837447152206874}
-  isExternalFunc: 0
-  externalFunctionName: 
---- !u!114 &-1292014253856621592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 4
-    y: 55
-    width: 250
-    height: 80
-  isDragging: 0
-  isSelected: 1
-  sentence:
-    characterName: Seller
-    text: No comet today visible
-    characterSprite: {fileID: 0}
-  parentNodes: []
-  childNodes:
-  - {fileID: 860910542965298904}
   isExternalFunc: 0
   externalFunctionName: 
 --- !u!114 &11400000
@@ -199,8 +173,8 @@ MonoBehaviour:
   - {fileID: 6215422687574203853}
   - {fileID: -2445442636312470642}
   - {fileID: 144837447152206874}
-  - {fileID: -1292014253856621592}
-  - {fileID: -6943751319894022039}
+  - {fileID: -7902348221181529238}
+  - {fileID: 2220224330595069116}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
 --- !u!114 &144837447152206874
@@ -218,8 +192,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1198
-    y: 255
+    x: 369
+    y: 723
     width: 250
     height: 80
   isDragging: 0
@@ -229,7 +203,7 @@ MonoBehaviour:
   parentSentenceNodes:
   - {fileID: -2445442636312470642}
   - {fileID: -3388046701931654768}
-  - {fileID: 3450605565850512521}
+  - {fileID: -7902348221181529238}
   childSentenceNodes:
   - {fileID: 6215422687574203853}
 --- !u!114 &500879870367853484
@@ -247,8 +221,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 58
-    y: 232
+    x: 374
+    y: 66
     width: 250
     height: 80
   isDragging: 0
@@ -257,8 +231,10 @@ MonoBehaviour:
     characterName: Seller
     text: Hello, what can I do for ya?
     characterSprite: {fileID: 0}
-  parentNodes: []
-  childNodes: []
+  parentNodes:
+  - {fileID: 2220224330595069116}
+  childNodes:
+  - {fileID: 860910542965298904}
   isExternalFunc: 0
   externalFunctionName: 
 --- !u!114 &860910542965298904
@@ -276,22 +252,57 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 347
-    y: 212
+    x: 376
+    y: 172
     width: 250
     height: 120
   isDragging: 0
   isSelected: 0
   answers:
-  - Nothing, thanks!
-  - Crisps, please
-  - Noce weather today, isnt'it?
+  - 0. Nothing, thanks!
+  - 1. Crisps, please
+  - 2. Noce weather today, isnt'it?
   parentSentenceNodes:
-  - {fileID: -1292014253856621592}
+  - {fileID: 500879870367853484}
   childSentenceNodes:
   - {fileID: -5632482234939644296}
   - {fileID: -3388046701931654768}
   - {fileID: 3450605565850512521}
+--- !u!114 &2220224330595069116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 676
+    y: 15
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 1
+  sentence:
+    characterName: Old Latin
+    text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+      eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+      in culpa qui officia deserunt mollit anim id est laborum.
+    characterSprite: {fileID: 0}
+  parentNodes: []
+  childNodes:
+  - {fileID: 500879870367853484}
+  isExternalFunc: 0
+  externalFunctionName: 
 --- !u!114 &3450605565850512521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,20 +318,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 630
-    y: 393
+    x: 651
+    y: 323
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: Seller
-    text: Of course, yes
+    text: 2. Of course, yes
     characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 860910542965298904}
   childNodes:
-  - {fileID: 144837447152206874}
+  - {fileID: -7902348221181529238}
   isExternalFunc: 0
   externalFunctionName: 
 --- !u!114 &6215422687574203853
@@ -338,8 +349,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1196
-    y: 388
+    x: 368
+    y: 864
     width: 250
     height: 80
   isDragging: 0

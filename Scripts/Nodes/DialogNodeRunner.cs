@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KulibinSpace.DialogSystem {
 
-    public class DialogNodeRunner : MonoBehaviour {
+    public class DialogNodeRunner {
 
         DialogNodeGraph graph;
         public Node node;

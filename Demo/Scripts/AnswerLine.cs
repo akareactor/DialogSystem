@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 namespace KulibinSpace.DialogSystem {
 
@@ -9,8 +11,10 @@ namespace KulibinSpace.DialogSystem {
         public TextMeshProUGUI answerText;
         public Button answerButton;
 
-        public void SetAnswer (string answer) {
+        public void SetAnswer (string answer, SentenceNode snode, UnityAction<SentenceNode> action) {
             answerText.text = answer;
+            answerButton.onClick.RemoveAllListeners();
+            answerButton.onClick.AddListener(() => action.Invoke(snode));
         }
 
     }

@@ -1,4 +1,5 @@
 namespace KulibinSpace.DialogSystem {
+
     public static class StringConstants {
         public const string Node = "node0";
         public const string SelectedNode = "node0 on";
@@ -9,4 +10,5 @@ namespace KulibinSpace.DialogSystem {
         public const string GreenLight = "d_greenLight";
         public const string RedLight = "d_redLight";
     }
+
 }
