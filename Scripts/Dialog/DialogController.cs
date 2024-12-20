@@ -84,19 +84,21 @@ namespace KulibinSpace.DialogSystem {
         // 2) to stop output current sentence and wait next skip action
         // 3) go to next Sentence Node and start output its text
         public void OnSkipSentence (InputAction.CallbackContext context) {
-            if (context.performed) {
-                StopAllCoroutines();
-                if (runner.node != null) {
-                    if (runner.node is SentenceNode) {
-                        if (sentenceText.maxVisibleCharacters < sentenceText.text.Length) {
-                            sentenceText.maxVisibleCharacters = sentenceText.text.Length;
-                            StartCoroutine(FillAnswer(runner.Next()));
-                        } else {
-                            OutputSentence();
-                        }
+            if (context.performed) SkipSentence();
+        }
+
+        public void SkipSentence () {
+            StopAllCoroutines();
+            if (runner.node != null) {
+                if (runner.node is SentenceNode) {
+                    if (sentenceText.maxVisibleCharacters < sentenceText.text.Length) {
+                        sentenceText.maxVisibleCharacters = sentenceText.text.Length;
+                        StartCoroutine(FillAnswer(runner.Next()));
+                    } else {
+                        OutputSentence();
                     }
-                } else CloseDialog();
-            }
+                }
+            } else CloseDialog();
         }
 
         void CloseDialog () {
