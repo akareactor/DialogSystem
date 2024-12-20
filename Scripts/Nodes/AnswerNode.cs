@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security;
 using UnityEditor;
 using UnityEngine;
 
@@ -211,7 +212,11 @@ namespace KulibinSpace.DialogSystem {
             if (par != null && par != this && par is SentenceNode snode) childSentenceNodes.Remove(snode);
         }
 
-
+        public SentenceNode GetChild (int index) {
+            SentenceNode ret = null;
+            if (index >= 0 && index < childSentenceNodes.Count) ret = childSentenceNodes[index];
+            return ret;
+        }
 
 #endif
     }

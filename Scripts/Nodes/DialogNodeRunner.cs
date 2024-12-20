@@ -17,17 +17,17 @@ namespace KulibinSpace.DialogSystem {
                 Debug.LogWarning("Dialog Graph is empty");
             } else {
                 graph = dialogNodeGraph;
+                ReadFirst();
             }
-            ReadFirst();
         }
 
         // First read node must be Sentence type only
         void ReadFirst () {
             List<SentenceNode> sentences = new();
-            // select all Sentence Nodes with no parent nodes and some child nodes
+            // select all Sentence Nodes with no parent nodes and none or some child nodes
             foreach (Node node in graph.nodes) {
                 if (node is SentenceNode snode) {
-                    if ((snode.parentNodes == null || snode.parentNodes.Count == 0) && snode.childNodes != null && snode.childNodes.Count > 0) {
+                    if (snode.parentNodes == null || snode.parentNodes.Count == 0) {
                         sentences.Add(snode);
                     }
                 }

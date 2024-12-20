@@ -15,8 +15,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 649
-    y: 458
+    x: 706
+    y: 505
     width: 250
     height: 80
   isDragging: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 86
-    y: 325
+    x: 143
+    y: 372
     width: 250
     height: 80
   isDragging: 0
@@ -77,8 +77,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 371
-    y: 326
+    x: 428
+    y: 373
     width: 250
     height: 80
   isDragging: 0
@@ -108,8 +108,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 84
-    y: 452
+    x: 141
+    y: 499
     width: 250
     height: 80
   isDragging: 0
@@ -135,8 +135,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 84
-    y: 588
+    x: 141
+    y: 635
     width: 250
     height: 80
   isDragging: 0
@@ -192,8 +192,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 369
-    y: 723
+    x: 426
+    y: 770
     width: 250
     height: 80
   isDragging: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 374
-    y: 66
+    x: 431
+    y: 113
     width: 250
     height: 80
   isDragging: 0
@@ -252,8 +252,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 376
-    y: 172
+    x: 433
+    y: 219
     width: 250
     height: 120
   isDragging: 0
@@ -283,12 +283,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 676
-    y: 15
+    x: 431
+    y: 19
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentence:
     characterName: Old Latin
     text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -318,8 +318,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 651
-    y: 323
+    x: 708
+    y: 370
     width: 250
     height: 80
   isDragging: 0
@@ -349,8 +349,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 368
-    y: 864
+    x: 425
+    y: 911
     width: 250
     height: 80
   isDragging: 0

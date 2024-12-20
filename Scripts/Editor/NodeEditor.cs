@@ -253,7 +253,7 @@ namespace KulibinSpace.DialogSystem {
                 if (currentNode == null) {
                     isSelecting = true; // starting a multiselection
                 } else {
-                    AssetDatabase.OpenAsset(currentNode); // open inspector of selected node
+                    Selection.activeObject = currentNode; // AssetDatabase.OpenAsset(currentNode); // the same - open inspector of selected node
                 }
             } else if (currentEvent.button == 1) { // RMB
                 Node node = GetHoveredNode(currentEvent.mousePosition);
