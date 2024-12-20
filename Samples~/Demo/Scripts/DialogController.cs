@@ -21,6 +21,11 @@ namespace KulibinSpace.DialogSystem {
         DialogNodeRunner runner;
 
         void Start () {
+            if (dialog != null) Init(dialog);
+        }
+
+        public void Init (DialogNodeGraph par) {
+            dialog = par;
             runner = new DialogNodeRunner();
             runner.Init(dialog);
             OutputSentence();
