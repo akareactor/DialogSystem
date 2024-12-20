@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace KulibinSpace.DialogSystem {
 
-    [CreateAssetMenu(menuName = "Scriptable Objects/Nodes/Answer Node", fileName = "New Answer Node")]
     public class AnswerNode : Node {
         private int amountOfAnswers = 1;
         public List<string> answers = new();

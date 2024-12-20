@@ -17,7 +17,6 @@ namespace KulibinSpace.DialogSystem {
         }
     }
 
-    [CreateAssetMenu(menuName = "Scriptable Objects/Nodes/Sentence Node", fileName = "New Sentence Node")]
     public class SentenceNode : Node {
 
         [SerializeField] private Sentence sentence;
