@@ -211,12 +211,13 @@ namespace KulibinSpace.DialogSystem {
             if (par != null && par != this && par is SentenceNode snode) childSentenceNodes.Remove(snode);
         }
 
+#endif
+
         public SentenceNode GetChild (int index) {
             SentenceNode ret = null;
             if (index >= 0 && index < childSentenceNodes.Count) ret = childSentenceNodes[index];
             return ret;
         }
 
-#endif
     }
 }
