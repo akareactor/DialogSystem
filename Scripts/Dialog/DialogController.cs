@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using System.Collections;
 using TMPro;
 
@@ -17,6 +18,7 @@ namespace KulibinSpace.DialogSystem {
         public GameObject answerLinePrefab;
         [Header("Dialog settings"), Space(5)]
         public float sentenceCharsOutputDelay = 0.02f;
+        public UnityAction dialogStopped;
 
         DialogNodeRunner runner;
 
@@ -103,6 +105,7 @@ namespace KulibinSpace.DialogSystem {
 
         void CloseDialog () {
             dialogContainer.SetActive(false);
+            dialogStopped?.Invoke();
         }
 
     }
