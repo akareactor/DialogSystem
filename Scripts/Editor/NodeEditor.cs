@@ -1,6 +1,7 @@
+#if UNITY_EDITOR
+
 using System;
 using System.Collections.Generic;
-using Codice.CM.Client.Differences.Merge;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -478,3 +479,5 @@ namespace KulibinSpace.DialogSystem {
         }
     }
 }
+
+#endif
