@@ -252,12 +252,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 433
+    x: 432
     y: 219
     width: 250
     height: 120
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   answers:
   - 0. Nothing, thanks!
   - 1. Crisps, please
