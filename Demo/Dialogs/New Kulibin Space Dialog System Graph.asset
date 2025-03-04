@@ -15,22 +15,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 706
-    y: 505
+    x: 735
+    y: 584
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: Cola for yoy
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 3450605565850512521}
   childNodes:
   - {fileID: 144837447152206874}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-5632482234939644296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,22 +56,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 143
-    y: 372
+    x: 172
+    y: 451
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: 0. May be our new brand?
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 860910542965298904}
   childNodes:
   - {fileID: -3038212624193248107}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-3388046701931654768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,22 +97,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 428
-    y: 373
+    x: 457
+    y: 452
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: 1. Here you are
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 860910542965298904}
   childNodes:
   - {fileID: 144837447152206874}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-3038212624193248107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,18 +138,30 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 141
-    y: 499
+    x: 170
+    y: 578
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
   answers:
-  - Ok, take my money
+  - answer: Ok, give it to me
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   parentSentenceNodes:
   - {fileID: -5632482234939644296}
   childSentenceNodes:
   - {fileID: -2445442636312470642}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-2445442636312470642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,22 +177,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 141
-    y: 635
+    x: 170
+    y: 714
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: Here it is
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: -3038212624193248107}
   childNodes:
   - {fileID: 144837447152206874}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +215,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
   m_Name: New Kulibin Space Dialog System Graph
   m_EditorClassIdentifier: 
+  characterName: 
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: characterName
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  characterSprite: {fileID: 0}
   nodes:
   - {fileID: 3450605565850512521}
   - {fileID: -3038212624193248107}
@@ -177,6 +240,9 @@ MonoBehaviour:
   - {fileID: 2220224330595069116}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &144837447152206874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,20 +258,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 426
-    y: 770
+    x: 456
+    y: 849
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
   answers:
-  - Thank you!
+  - answer: Thanks!
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   parentSentenceNodes:
   - {fileID: -2445442636312470642}
   - {fileID: -3388046701931654768}
   - {fileID: -7902348221181529238}
   childSentenceNodes:
   - {fileID: 6215422687574203853}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &500879870367853484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,22 +299,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 431
-    y: 113
+    x: 462
+    y: 198
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+    m_TableEntryReference:
+      m_KeyId: 32059933319168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: Hello, what can I do for ya?
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 2220224330595069116}
   childNodes:
   - {fileID: 860910542965298904}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &860910542965298904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,22 +340,62 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 432
-    y: 219
+    x: 459
+    y: 286
     width: 250
-    height: 120
+    height: 140
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   answers:
-  - 0. Nothing, thanks!
-  - 1. Crisps, please
-  - 2. Noce weather today, isnt'it?
+  - answer: 
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+      m_TableEntryReference:
+        m_KeyId: 32059933319168
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Good morning!
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Nice day
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Hey there!
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 261428576509952
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   parentSentenceNodes:
   - {fileID: 500879870367853484}
   childSentenceNodes:
   - {fileID: -5632482234939644296}
   - {fileID: -3388046701931654768}
   - {fileID: 3450605565850512521}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &2220224330595069116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,26 +411,36 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 431
-    y: 19
+    x: 459
+    y: 80
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+    m_TableEntryReference:
+      m_KeyId: 33275723636736
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Old Latin
     text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
       eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
       in culpa qui officia deserunt mollit anim id est laborum.
-    characterSprite: {fileID: 0}
   parentNodes: []
   childNodes:
   - {fileID: 500879870367853484}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &3450605565850512521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,22 +456,32 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 708
-    y: 370
+    x: 737
+    y: 449
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: 2. Of course, yes
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 860910542965298904}
   childNodes:
   - {fileID: -7902348221181529238}
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6215422687574203853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,18 +497,28 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 425
-    y: 911
+    x: 454
+    y: 990
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Seller
     text: Bye
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 144837447152206874}
   childNodes: []
   isExternalFunc: 0
   externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []

@@ -14,7 +14,7 @@ public class TestRunner : MonoBehaviour {
             if (runner.node is SentenceNode snode) {
                 print("Sentence: " + snode.GetSentenceText());
             } else if (runner.node is AnswerNode anode) {
-                print("Answers: " + string.Join(", ", anode.answers));
+                print("Answers: " + string.Join(", ", anode.Answers));
             }
             runner.Next();
         }

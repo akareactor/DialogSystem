@@ -1,22 +1,41 @@
 using System.Collections.Generic;
-using System.Security;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace KulibinSpace.DialogSystem {
 
+    [System.Serializable]
+    public struct Answer {
+        public string answer;
+        public LocalizedString stringRef;
+    }
+
     public class AnswerNode : Node {
         private int amountOfAnswers = 1;
-        public List<string> answers = new();
+        //public List<string> answers = new();
+        [SerializeField]
+        private List<Answer> answers = new();
         // typed nodes!
         public List<SentenceNode> parentSentenceNodes = new();
         public List<SentenceNode> childSentenceNodes = new();
         private const float lableFieldSpace = 18f;
         private const float textFieldWidth = 170f;
+        private const float textFieldHeight = 20;
         private const float answerNodeWidth = 250f;
         private const float answerNodeHeight = 80f;
         private float currentAnswerNodeHeight = 80f;
         private const float additionalAnswerNodeHeight = 20f;
+
+        public List<string> Answers { get { return GetAnswers(); } }
+
+        List<string> GetAnswers () {
+            List<string> ret = new();
+            foreach (var answer in answers) {
+                if (answer.stringRef.IsEmpty) ret.Add(answer.answer); else ret.Add(answer.stringRef.GetLocalizedString());
+            }
+            return ret;
+        }
 
 #if UNITY_EDITOR
 
@@ -44,7 +63,7 @@ namespace KulibinSpace.DialogSystem {
             GUILayout.BeginArea(rect, nodeStyle);
             // label
             GUIStyle answerLabelStyle = new GUIStyle(labelStyle);
-            answerLabelStyle.normal.textColor = new Color (255, 165, 0, 1); // orange
+            answerLabelStyle.normal.textColor = new Color(255, 165, 0, 1); // orange
             // answers
             EditorGUILayout.LabelField("Answer", answerLabelStyle);
             for (int i = 0; i < amountOfAnswers; i++) {
@@ -57,13 +76,21 @@ namespace KulibinSpace.DialogSystem {
             GUILayout.EndArea();
         }
 
+        Answer NewAnswerItem () {
+            return new Answer {
+                answer = string.Empty,
+                stringRef = new LocalizedString("DialogSystemDemo", "")
+            };
+        }
+
         /// <summary>
         /// Determines the number of answers depending on answers list count
         /// </summary>
         public void CalculateAmountOfAnswers () {
             if (answers.Count == 0) {
                 amountOfAnswers = 1;
-                answers = new List<string>() { string.Empty };
+                //answers = new List<string>() { string.Empty };
+                answers = new List<Answer>() { NewAnswerItem() };
             } else {
                 amountOfAnswers = answers.Count;
             }
@@ -77,7 +104,22 @@ namespace KulibinSpace.DialogSystem {
         private void DrawAnswerLine (int answerNumber, string iconPathOrName) {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField($"{answerNumber}. ", GUILayout.Width(lableFieldSpace));
-            answers[answerNumber - 1] = EditorGUILayout.TextField(answers[answerNumber - 1], GUILayout.Width(textFieldWidth));
+            //answers[answerNumber - 1] = EditorGUILayout.TextField(answers[answerNumber - 1], GUILayout.Width(textFieldWidth));
+            Answer a = answers[answerNumber - 1];
+            string currentValue = ""; if (!a.stringRef.IsEmpty) currentValue = a.stringRef.GetLocalizedString();
+            if (currentValue == "") { // editable sentence
+                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
+                a.answer = EditorGUILayout.TextArea(a.answer, textAreaStyle, GUILayout.Width(textFieldWidth));
+                answers[answerNumber - 1] = a;
+            } else { // non-editable localized content
+                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+                    wordWrap = true, normal = { textColor = Color.black }
+                };
+                GUI.color = new Color(0.8f, 0.8f, 0.8f);
+                EditorGUILayout.SelectableLabel(currentValue, textAreaStyle, GUILayout.Width(textFieldWidth), GUILayout.Height(textFieldHeight));
+                GUI.color = Color.white;
+            }
+
             EditorGUILayout.LabelField(EditorGUIUtility.IconContent(iconPathOrName), GUILayout.Width(lableFieldSpace));
             EditorGUILayout.EndHorizontal();
         }
@@ -101,7 +143,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void IncreaseAmountOfAnswers () {
             amountOfAnswers++;
-            answers.Add(string.Empty);
+            answers.Add(NewAnswerItem());
             currentAnswerNodeHeight += additionalAnswerNodeHeight;
         }
 

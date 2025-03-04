@@ -13,7 +13,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="dialogNodeGraph"></param>
         public void Init (DialogNodeGraph dialogNodeGraph) {
-            if (dialogNodeGraph.nodes == null || dialogNodeGraph.nodes.Count == 0) {
+            if (dialogNodeGraph == null || dialogNodeGraph.nodes == null || dialogNodeGraph.nodes.Count == 0) {
                 Debug.LogWarning("Dialog Graph is empty");
             } else {
                 graph = dialogNodeGraph;

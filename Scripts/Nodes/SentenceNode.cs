@@ -1,23 +1,25 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace KulibinSpace.DialogSystem {
 
     [System.Serializable]
     public struct Sentence {
-        public string characterName;
         public string text;
-        public Sprite characterSprite;
 
         public Sentence (string characterName, string text) {
-            characterSprite = null;
-            this.characterName = characterName;
+            //characterSprite = null;
+            //this.characterName = characterName;
             this.text = text;
         }
     }
 
     public class SentenceNode : Node {
+
+        public LocalizedString stringRef = new() { TableReference = "DialogSystemDemo", TableEntryReference = "" };
 
         [SerializeField] private Sentence sentence;
 
@@ -34,6 +36,8 @@ namespace KulibinSpace.DialogSystem {
 
         private const float labelFieldSpace = 45f;
         private const float textFieldWidth = 165f;
+        private const float textAreaFieldWidth = 220f;
+        private const float textFieldHeight = 40;
 
         //private const float externalNodeHeight = 80f;
 
@@ -43,14 +47,6 @@ namespace KulibinSpace.DialogSystem {
         /// <returns></returns>
         public string GetExternalFunctionName () {
             return externalFunctionName;
-        }
-
-        /// <summary>
-        /// Returning sentence character name
-        /// </summary>
-        /// <returns></returns>
-        public string GetSentenceCharacterName () {
-            return sentence.characterName;
         }
 
         /// <summary>
@@ -67,15 +63,10 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <returns></returns>
         public string GetSentenceText () {
-            return sentence.text;
-        }
-
-        /// <summary>
-        /// Returning sentence character sprite
-        /// </summary>
-        /// <returns></returns>
-        public Sprite GetCharacterSprite () {
-            return sentence.characterSprite;
+            if (stringRef.IsEmpty)
+                return sentence.text;
+            else
+                return stringRef.GetLocalizedString();
         }
 
         /// <summary>
@@ -95,10 +86,30 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="lableStyle"></param>
         public override void Draw (GUIStyle nodeStyle, GUIStyle labelStyle) {
             base.Draw(nodeStyle, labelStyle);
+            // is local here
+            string currentValue = ""; if (!stringRef.IsEmpty) currentValue = stringRef.GetLocalizedString();
+            string sentenceTitle = "Sentence";
+            // stringRef.TableEntryReference.Key --- is EMPTY!!! Do not know WHY!!!
+            if (currentValue != "") sentenceTitle += " / " + LocalizationSettings.SelectedLocale.name + "";
+            //
             GUILayout.BeginArea(rect, nodeStyle);
-            EditorGUILayout.LabelField("Sentence", labelStyle);
-            DrawCharacterNameFieldHorizontal();
-            DrawSentenceTextFieldHorizontal();
+            EditorGUILayout.LabelField(sentenceTitle, labelStyle);
+            //DrawCharacterNameFieldHorizontal();
+            // Draw label and text fields for sentence text
+            EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.LabelField($"Text ", GUILayout.Width(labelFieldSpace));
+            if (currentValue == "") { // editable sentence
+                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
+                sentence.text = EditorGUILayout.TextArea(sentence.text, textAreaStyle, GUILayout.Width(textAreaFieldWidth), GUILayout.Height(textFieldHeight));
+            } else { // non-editable localized content
+                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+                    wordWrap = true, normal = { textColor = Color.black }
+                };
+                GUI.color = new Color(0.8f, 0.8f, 0.8f);
+                EditorGUILayout.SelectableLabel(currentValue, textAreaStyle, GUILayout.Width(textAreaFieldWidth), GUILayout.Height(textFieldHeight));
+                GUI.color = Color.white;
+            }
+            EditorGUILayout.EndHorizontal();
             /*
             DrawCharacterSpriteHorizontal();
             DrawExternalFunctionTextField();
@@ -114,18 +125,8 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void DrawCharacterNameFieldHorizontal () {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Name ", GUILayout.Width(labelFieldSpace));
-            sentence.characterName = EditorGUILayout.TextField(sentence.characterName, GUILayout.Width(textFieldWidth));
-            EditorGUILayout.EndHorizontal();
-        }
-
-        /// <summary>
-        /// Draw label and text fields for sentence text
-        /// </summary>
-        private void DrawSentenceTextFieldHorizontal () {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Text ", GUILayout.Width(labelFieldSpace));
-            sentence.text = EditorGUILayout.TextField(sentence.text, GUILayout.Width(textFieldWidth));
+            //EditorGUILayout.LabelField($"Name ", GUILayout.Width(labelFieldSpace));
+            //sentence.characterName = EditorGUILayout.TextField(sentence.characterName, GUILayout.Width(textFieldWidth));
             EditorGUILayout.EndHorizontal();
         }
 
@@ -134,8 +135,8 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void DrawCharacterSpriteHorizontal () {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"Sprite ", GUILayout.Width(labelFieldSpace));
-            sentence.characterSprite = (Sprite)EditorGUILayout.ObjectField(sentence.characterSprite, typeof(Sprite), false, GUILayout.Width(textFieldWidth));
+            //EditorGUILayout.LabelField($"Sprite ", GUILayout.Width(labelFieldSpace));
+            //sentence.characterSprite = (Sprite)EditorGUILayout.ObjectField(sentence.characterSprite, typeof(Sprite), false, GUILayout.Width(textFieldWidth));
             EditorGUILayout.EndHorizontal();
         }
 
@@ -236,7 +237,7 @@ namespace KulibinSpace.DialogSystem {
             return par != null && par != this && childNodes.Exists(x => x == par);
         }
 
-        public override bool CanAddAsChildren (Node par) { 
+        public override bool CanAddAsChildren (Node par) {
             return par != null && par != this && !childNodes.Exists(x => x == par);
         }
 

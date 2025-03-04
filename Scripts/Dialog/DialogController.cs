@@ -46,7 +46,7 @@ namespace KulibinSpace.DialogSystem {
                 OpenDialog();
                 sentenceText.text = snode.GetSentenceText();
                 sentenceText.maxVisibleCharacters = 0;
-                characterName.text = snode.GetSentenceCharacterName();
+                characterName.text = dialog.characterName;
                 StopAllCoroutines();
                 StartCoroutine(SentenceOutputLikeTerminal());
             } else {
@@ -66,7 +66,7 @@ namespace KulibinSpace.DialogSystem {
         IEnumerator FillAnswer (Node par) {
             if (par != null && par is AnswerNode anode) {
                 int si = 0;
-                foreach (string answer in anode.answers) {
+                foreach (string answer in anode.Answers) {
                     GameObject clone = Instantiate(answerLinePrefab, answersPanel); // let empty button alive
                     clone.GetComponent<AnswerLine>().SetAnswer(answer, anode.GetChild(si), GoToSentence);
                     yield return new WaitForSeconds(0.05f); // presentation like delay

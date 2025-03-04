@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.RepresentationModel;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace KulibinSpace.DialogSystem {
         private Node currentNode;
         private GUIStyle nodeStyle;
         private GUIStyle selectedNodeStyle;
+        private GUIStyle sentenceNodeStyle;
+        private GUIStyle selectedSentenceNodeStyle;
         private GUIStyle labelStyle;
         private Rect selectionRect;
         private Vector2 mouseClickPosition;
@@ -33,16 +36,16 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void OnEnable () {
             Selection.selectionChanged += ChangeEditorWindowOnSelection;
-            nodeStyle = new GUIStyle {
-                padding = new RectOffset(15, 15, 5, 5),
-                border = new RectOffset(10, 10, 10, 10)
-            };
+            nodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
             nodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node) as Texture2D;
-            selectedNodeStyle = new GUIStyle {
-                padding = new RectOffset(15, 15, 5, 5),
-                border = new RectOffset(10, 10, 10, 10)
-            };
+            selectedNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
             selectedNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode) as Texture2D;
+            //
+            sentenceNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
+            sentenceNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node2) as Texture2D;
+            selectedSentenceNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
+            selectedSentenceNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode2) as Texture2D;
+            //
             labelStyle = new GUIStyle {
                 alignment = TextAnchor.MiddleLeft,
                 fontSize = labelFontSize
@@ -214,10 +217,19 @@ namespace KulibinSpace.DialogSystem {
         private void DrawNodes () {
             if (graph.nodes != null) {
                 foreach (Node node in graph.nodes) {
-                    if (!node.isSelected) {
-                        node.Draw(nodeStyle, labelStyle);
+                    if (node is SentenceNode) {
+                        // 2025-03-03 15:15:10 color centence in more bright color
+                        if (!node.isSelected) {
+                            node.Draw(sentenceNodeStyle, labelStyle);
+                        } else {
+                            node.Draw(selectedSentenceNodeStyle, labelStyle);
+                        }
                     } else {
-                        node.Draw(selectedNodeStyle, labelStyle);
+                        if (!node.isSelected) {
+                            node.Draw(nodeStyle, labelStyle);
+                        } else {
+                            node.Draw(selectedNodeStyle, labelStyle);
+                        }
                     }
                 }
                 GUI.changed = true;
