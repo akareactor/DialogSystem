@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.RepresentationModel;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
