@@ -20,9 +20,9 @@ namespace KulibinSpace.DialogSystem {
         public List<SentenceNode> parentSentenceNodes = new();
         public List<SentenceNode> childSentenceNodes = new();
         private const float lableFieldSpace = 18f;
-        private const float textFieldWidth = 170f;
+        private const float textFieldWidth = 220f;
         private const float textFieldHeight = 20;
-        private const float answerNodeWidth = 250f;
+        private const float answerNodeWidth = 265f;
         private const float answerNodeHeight = 80f;
         private float currentAnswerNodeHeight = 80f;
         private const float additionalAnswerNodeHeight = 20f;
@@ -61,6 +61,7 @@ namespace KulibinSpace.DialogSystem {
             childSentenceNodes.RemoveAll(item => item == null);
             rect.size = new Vector2(answerNodeWidth, currentAnswerNodeHeight);
             GUILayout.BeginArea(rect, nodeStyle);
+
             // label
             GUIStyle answerLabelStyle = new GUIStyle(labelStyle);
             answerLabelStyle.normal.textColor = new Color(255, 165, 0, 1); // orange
@@ -73,6 +74,7 @@ namespace KulibinSpace.DialogSystem {
                     DrawAnswerLine(i + 1, StringConstants.EmptyDot);
             }
             DrawAnswerNodeButtons();
+
             GUILayout.EndArea();
         }
 
@@ -103,23 +105,23 @@ namespace KulibinSpace.DialogSystem {
         /// <param name="iconPathOrName"></param>
         private void DrawAnswerLine (int answerNumber, string iconPathOrName) {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"{answerNumber}. ", GUILayout.Width(lableFieldSpace));
-            //answers[answerNumber - 1] = EditorGUILayout.TextField(answers[answerNumber - 1], GUILayout.Width(textFieldWidth));
             Answer a = answers[answerNumber - 1];
             string currentValue = ""; if (!a.stringRef.IsEmpty) currentValue = a.stringRef.GetLocalizedString();
-            if (currentValue == "") { // editable sentence
+            if (currentValue == "") {
+                // editable sentence
                 GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
                 a.answer = EditorGUILayout.TextArea(a.answer, textAreaStyle, GUILayout.Width(textFieldWidth));
                 answers[answerNumber - 1] = a;
-            } else { // non-editable localized content
+            } else {
+                // non-editable localized content
                 GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
-                    wordWrap = true, normal = { textColor = Color.black }
+                    wordWrap = true,
+                    normal = { textColor = Color.black }
                 };
                 GUI.color = new Color(0.8f, 0.8f, 0.8f);
                 EditorGUILayout.SelectableLabel(currentValue, textAreaStyle, GUILayout.Width(textFieldWidth), GUILayout.Height(textFieldHeight));
                 GUI.color = Color.white;
             }
-
             EditorGUILayout.LabelField(EditorGUIUtility.IconContent(iconPathOrName), GUILayout.Width(lableFieldSpace));
             EditorGUILayout.EndHorizontal();
         }

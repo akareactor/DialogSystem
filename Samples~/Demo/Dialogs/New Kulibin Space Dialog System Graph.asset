@@ -140,7 +140,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 170
     y: 578
-    width: 250
+    width: 265
     height: 80
   isDragging: 0
   isSelected: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 456
     y: 849
-    width: 250
+    width: 265
     height: 80
   isDragging: 0
   isSelected: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   stringRef:
     m_TableReference:
       m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
@@ -340,9 +340,9 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 459
-    y: 286
-    width: 250
+    x: 440
+    y: 285
+    width: 265
     height: 140
   isDragging: 0
   isSelected: 0
