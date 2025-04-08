@@ -21,6 +21,9 @@ MonoBehaviour:
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -36,8 +39,6 @@ MonoBehaviour:
   - {fileID: 3450605565850512521}
   childNodes:
   - {fileID: 144837447152206874}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -62,6 +63,9 @@ MonoBehaviour:
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -77,8 +81,6 @@ MonoBehaviour:
   - {fileID: 860910542965298904}
   childNodes:
   - {fileID: -3038212624193248107}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -97,12 +99,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 457
-    y: 452
+    x: 449
+    y: 454
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -118,8 +123,6 @@ MonoBehaviour:
   - {fileID: 860910542965298904}
   childNodes:
   - {fileID: 144837447152206874}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -183,6 +186,9 @@ MonoBehaviour:
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -198,8 +204,6 @@ MonoBehaviour:
   - {fileID: -3038212624193248107}
   childNodes:
   - {fileID: 144837447152206874}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -299,12 +303,27 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 462
-    y: 198
+    x: 450
+    y: 179
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8db710938c5c7ea49a2e209bd253e163, type: 2}
+        m_TargetAssemblyTypeName: KulibinSpace.MessageBus.GameMessageString, Space.Kulibin.MessageBus
+        m_MethodName: Invoke
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hello, world!
+          m_BoolArgument: 0
+        m_CallState: 2
   stringRef:
     m_TableReference:
       m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
@@ -320,8 +339,6 @@ MonoBehaviour:
   - {fileID: 2220224330595069116}
   childNodes:
   - {fileID: 860910542965298904}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -411,12 +428,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 459
-    y: 80
+    x: 447
+    y: 81
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
@@ -436,8 +456,6 @@ MonoBehaviour:
   parentNodes: []
   childNodes:
   - {fileID: 500879870367853484}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -462,6 +480,9 @@ MonoBehaviour:
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -477,8 +498,6 @@ MonoBehaviour:
   - {fileID: 860910542965298904}
   childNodes:
   - {fileID: -7902348221181529238}
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []
@@ -497,12 +516,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 454
-    y: 990
+    x: 461
+    y: 954
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -517,8 +539,6 @@ MonoBehaviour:
   parentNodes:
   - {fileID: 144837447152206874}
   childNodes: []
-  isExternalFunc: 0
-  externalFunctionName: 
   references:
     version: 2
     RefIds: []

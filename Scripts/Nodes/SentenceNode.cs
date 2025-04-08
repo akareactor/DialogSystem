@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
@@ -18,6 +19,8 @@ namespace KulibinSpace.DialogSystem {
     }
 
     public class SentenceNode : Node {
+        
+        public UnityEvent sentenceSignal; // for scriptable signals
 
         public LocalizedString stringRef = new() { TableReference = "DialogSystemDemo", TableEntryReference = "" };
 
@@ -28,26 +31,10 @@ namespace KulibinSpace.DialogSystem {
         public List<Node> parentNodes = new();
         public List<Node> childNodes = new();
 
-        [Space(7)]
-        [SerializeField] private bool isExternalFunc;
-        [SerializeField] private string externalFunctionName;
-
-        private string externalButtonLabel;
-
         private const float labelFieldSpace = 45f;
         private const float textFieldWidth = 165f;
         private const float textAreaFieldWidth = 220f;
         private const float textFieldHeight = 40;
-
-        //private const float externalNodeHeight = 80f;
-
-        /// <summary>
-        /// Returning external function name
-        /// </summary>
-        /// <returns></returns>
-        public string GetExternalFunctionName () {
-            return externalFunctionName;
-        }
 
         /// <summary>
         /// Setting sentence text
@@ -67,14 +54,6 @@ namespace KulibinSpace.DialogSystem {
                 return sentence.text;
             else
                 return stringRef.GetLocalizedString();
-        }
-
-        /// <summary>
-        /// Returns the value of a isExternalFunc boolean field
-        /// </summary>
-        /// <returns></returns>
-        public bool IsExternalFunc () {
-            return isExternalFunc;
         }
 
 #if UNITY_EDITOR
@@ -110,13 +89,6 @@ namespace KulibinSpace.DialogSystem {
                 GUI.color = Color.white;
             }
             EditorGUILayout.EndHorizontal();
-            /*
-            DrawCharacterSpriteHorizontal();
-            DrawExternalFunctionTextField();
-            if (GUILayout.Button(externalButtonLable)) {
-                isExternalFunc = !isExternalFunc;
-            }
-            */
             GUILayout.EndArea();
         }
 
@@ -138,24 +110,6 @@ namespace KulibinSpace.DialogSystem {
             //EditorGUILayout.LabelField($"Sprite ", GUILayout.Width(labelFieldSpace));
             //sentence.characterSprite = (Sprite)EditorGUILayout.ObjectField(sentence.characterSprite, typeof(Sprite), false, GUILayout.Width(textFieldWidth));
             EditorGUILayout.EndHorizontal();
-        }
-
-        /// <summary>
-        /// Draw label and text fields for external function, 
-        /// depends on IsExternalFunc boolean field
-        /// </summary>
-        private void DrawExternalFunctionTextField () {
-            if (isExternalFunc) {
-                externalButtonLabel = "Remove external func";
-                EditorGUILayout.BeginHorizontal();
-                //rect.height = externalNodeHeight;
-                EditorGUILayout.LabelField($"Func Name ", GUILayout.Width(labelFieldSpace));
-                externalFunctionName = EditorGUILayout.TextField(externalFunctionName, GUILayout.Width(textFieldWidth));
-                EditorGUILayout.EndHorizontal();
-            } else {
-                externalButtonLabel = "Add external func";
-                //rect.height = standartHeight;
-            }
         }
 
         /// <summary>

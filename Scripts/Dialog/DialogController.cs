@@ -22,6 +22,10 @@ namespace KulibinSpace.DialogSystem {
 
         DialogNodeRunner runner;
 
+        public void LogSentenceSignal (string par) {
+            print("Sentence signal: " + par);
+        }
+
         void Start () {
             if (dialog != null) Init(dialog);
         }
@@ -37,13 +41,11 @@ namespace KulibinSpace.DialogSystem {
             dialogContainer.SetActive(true);
         }
 
-        // The sentence node is ALWAYS after the answer node
-        // After the sentence node there is either an answer node or a sentence
-        // We need to know two consequent nodes at a time, to get a pair sentence-answer
         public void OutputSentence () {
             while (answersPanel.childCount > 0) DestroyImmediate(answersPanel.GetChild(0).gameObject); // clear answer
             if (runner.node != null && runner.node is SentenceNode snode) {
                 OpenDialog();
+                snode.sentenceSignal?.Invoke();
                 sentenceText.text = snode.GetSentenceText();
                 sentenceText.maxVisibleCharacters = 0;
                 characterName.text = dialog.characterName;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -426,6 +426,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 333535036}
+--- !u!1 &472080541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472080543}
+  - component: {fileID: 472080542}
+  m_Layer: 0
+  m_Name: Sentence Listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &472080542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472080541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57552bd38a3e59e499736b63665801ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entries:
+  - eventItem:
+      rid: 6080354465256046594
+    gameMessage: {fileID: 11400000, guid: 8db710938c5c7ea49a2e209bd253e163, type: 2}
+  subscribeOnEnable: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6080354465256046594
+      type: {class: StringEventItem, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
+      data:
+        broadcast:
+          rid: 6080354465256046595
+    - rid: 6080354465256046595
+      type: {class: StringEvent, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
+      data:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 333535036}
+            m_TargetAssemblyTypeName: KulibinSpace.DialogSystem.DialogController,
+              Space.Kulibin.DialogSystem
+            m_MethodName: LogSentenceSignal
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+--- !u!4 &472080543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472080541}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1042320677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,3 +1145,4 @@ SceneRoots:
   - {fileID: 1207498637}
   - {fileID: 333535037}
   - {fileID: 1785968007}
+  - {fileID: 472080543}
