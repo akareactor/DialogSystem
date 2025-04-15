@@ -13,7 +13,6 @@ namespace KulibinSpace.DialogSystem {
 
     public class AnswerNode : Node {
         private int amountOfAnswers = 1;
-        //public List<string> answers = new();
         [SerializeField]
         private List<Answer> answers = new();
         // typed nodes!
@@ -33,6 +32,15 @@ namespace KulibinSpace.DialogSystem {
             List<string> ret = new();
             foreach (var answer in answers) {
                 if (answer.stringRef.IsEmpty) ret.Add(answer.answer); else ret.Add(answer.stringRef.GetLocalizedString());
+            }
+            return ret;
+        }
+
+        public string GetAnswer (int index) {
+            string ret = "";
+            if (answers != null && answers.Count > index) {
+                Answer answer = answers[index];
+                if (answer.stringRef.IsEmpty) ret = answer.answer; else ret = answer.stringRef.GetLocalizedString();
             }
             return ret;
         }

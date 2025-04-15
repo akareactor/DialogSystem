@@ -62,7 +62,7 @@ MonoBehaviour:
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   sentenceSignal:
     m_PersistentCalls:
       m_Calls: []
@@ -303,12 +303,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 450
-    y: 179
+    x: 453
+    y: 175
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentenceSignal:
     m_PersistentCalls:
       m_Calls:
@@ -357,7 +357,7 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 440
+    x: 439
     y: 285
     width: 265
     height: 140
@@ -407,9 +407,9 @@ MonoBehaviour:
   parentSentenceNodes:
   - {fileID: 500879870367853484}
   childSentenceNodes:
-  - {fileID: -5632482234939644296}
   - {fileID: -3388046701931654768}
   - {fileID: 3450605565850512521}
+  - {fileID: -5632482234939644296}
   references:
     version: 2
     RefIds: []
@@ -474,8 +474,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 737
-    y: 449
+    x: 744
+    y: 459
     width: 250
     height: 80
   isDragging: 0
