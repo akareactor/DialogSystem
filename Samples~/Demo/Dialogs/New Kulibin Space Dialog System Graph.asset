@@ -62,7 +62,7 @@ MonoBehaviour:
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentenceSignal:
     m_PersistentCalls:
       m_Calls: []
@@ -357,12 +357,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 439
-    y: 285
+    x: 673
+    y: 233
     width: 265
     height: 140
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   answers:
   - answer: 
     stringRef:

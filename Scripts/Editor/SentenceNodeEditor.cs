@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 
 namespace KulibinSpace.DialogSystem {
@@ -44,3 +46,5 @@ namespace KulibinSpace.DialogSystem {
     }
 
 }
+
+#endif
