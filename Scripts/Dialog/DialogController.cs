@@ -15,7 +15,8 @@ namespace KulibinSpace.DialogSystem {
         public TextMeshProUGUI characterName;
         public TextMeshProUGUI sentenceText;
         public Transform answersPanel;
-        public GameObject answerLinePrefab;
+        [SerializeField]
+        private GameObject answerLinePrefab;
         [Header("Dialog settings"), Space(5)]
         public float sentenceCharsOutputDelay = 0.02f;
         public UnityAction dialogStopped;
@@ -35,6 +36,10 @@ namespace KulibinSpace.DialogSystem {
             runner = new DialogNodeRunner();
             runner.Init(dialog);
             OutputSentence();
+        }
+
+        public void SetAnswerLinePrefab (GameObject par) {
+            answerLinePrefab = par;
         }
 
         void OpenDialog () {
