@@ -1,0 +1,555 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7902348221181529238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: 63615615-caad-4017-ac4c-24181d2f9099
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 625
+    y: 398
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Cola for yoy 3
+  parentNodes:
+  - {fileID: 3450605565850512521}
+  childNodes:
+  - {fileID: 144837447152206874}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-5632482234939644296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: e853e563-6a37-4603-bbf5-2f6a3410d3cb
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 62
+    y: 265
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: 0. May be our new brand?
+  parentNodes:
+  - {fileID: 860910542965298904}
+  childNodes:
+  - {fileID: -3038212624193248107}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-3388046701931654768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: 440fdba2-ce0a-45b4-9902-471071887bb7
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 339
+    y: 268
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: 1. Here you are
+  parentNodes:
+  - {fileID: 860910542965298904}
+  childNodes:
+  - {fileID: 144837447152206874}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-3038212624193248107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  guid: e5c98487-b7c2-4f18-a2e1-b578c358a81a
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 60
+    y: 392
+    width: 265
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - answer: Ok, give it to me
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  parentSentenceNodes:
+  - {fileID: -5632482234939644296}
+  childSentenceNodes:
+  - {fileID: -2445442636312470642}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-2445442636312470642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: e5e6d138-c925-4387-b233-cac441f4c8a1
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 60
+    y: 528
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Here it is
+  parentNodes:
+  - {fileID: -3038212624193248107}
+  childNodes:
+  - {fileID: 144837447152206874}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
+  m_Name: New Kulibin Space Dialog System Graph 1
+  m_EditorClassIdentifier: 
+  characterName: 
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: characterName
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  characterSprite: {fileID: 0}
+  nodes:
+  - {fileID: 3450605565850512521}
+  - {fileID: -3038212624193248107}
+  - {fileID: 860910542965298904}
+  - {fileID: -3388046701931654768}
+  - {fileID: -5632482234939644296}
+  - {fileID: 500879870367853484}
+  - {fileID: 6215422687574203853}
+  - {fileID: -2445442636312470642}
+  - {fileID: 144837447152206874}
+  - {fileID: -7902348221181529238}
+  - {fileID: 2220224330595069116}
+  nodeToDrawLineFrom: {fileID: 0}
+  linePosition: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &144837447152206874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  guid: d2e4039d-5757-47a7-b673-02829eaf0c3b
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 346
+    y: 663
+    width: 265
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - answer: Thanks!
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  parentSentenceNodes:
+  - {fileID: -2445442636312470642}
+  - {fileID: -3388046701931654768}
+  - {fileID: -7902348221181529238}
+  childSentenceNodes:
+  - {fileID: 6215422687574203853}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &500879870367853484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: 6f74da14-6726-4217-8453-b0d628526efe
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 367
+    y: -118
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8db710938c5c7ea49a2e209bd253e163, type: 2}
+        m_TargetAssemblyTypeName: KulibinSpace.MessageBus.GameMessageString, Space.Kulibin.MessageBus
+        m_MethodName: Invoke
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hello, world!
+          m_BoolArgument: 0
+        m_CallState: 2
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+    m_TableEntryReference:
+      m_KeyId: 32059933319168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Hello, what can I do for ya?
+  parentNodes:
+  - {fileID: 2220224330595069116}
+  childNodes:
+  - {fileID: 860910542965298904}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &860910542965298904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  guid: a5214f17-3c41-4dbf-877b-1c2b2c80d7ea
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 361
+    y: 23
+    width: 265
+    height: 140
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - answer: 
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+      m_TableEntryReference:
+        m_KeyId: 32059933319168
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Good morning!
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Nice day
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Hey there!
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 261428576509952
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  parentSentenceNodes:
+  - {fileID: 500879870367853484}
+  childSentenceNodes:
+  - {fileID: -3388046701931654768}
+  - {fileID: 3450605565850512521}
+  - {fileID: -5632482234939644296}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2220224330595069116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: 6dc419a6-dd5e-48ef-856f-91d65a5844c7
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 371
+    y: -256
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: GUID:d36db3923fd0a6e4c869e7bd4f75c903
+    m_TableEntryReference:
+      m_KeyId: 33275723636736
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+      eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+      in culpa qui officia deserunt mollit anim id est laborum.
+  parentNodes: []
+  childNodes:
+  - {fileID: 500879870367853484}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &3450605565850512521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: 02627017-4462-4915-8c15-fb8d10d4b9e9
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 632
+    y: 272
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 1
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: 2. Of course, yes
+  parentNodes:
+  - {fileID: 860910542965298904}
+  childNodes:
+  - {fileID: -7902348221181529238}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &6215422687574203853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: f512faed-71de-4d63-92fa-90f2cc57eec9
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 351
+    y: 768
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Bye
+  parentNodes:
+  - {fileID: 144837447152206874}
+  childNodes: []
+  references:
+    version: 2
+    RefIds: []

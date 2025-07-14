@@ -9,12 +9,8 @@ namespace KulibinSpace.DialogSystem {
     public class DialogNodeGraph : ScriptableObject {
         
         public string characterName;
-
         public LocalizedString stringRef = new () { TableReference = "DialogSystemDemo", TableEntryReference = "characterName" };
-
         public Sprite characterSprite;
-
-
         public List<Node> nodes = new();
 
 #if UNITY_EDITOR

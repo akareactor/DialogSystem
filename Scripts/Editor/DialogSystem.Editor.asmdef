@@ -1,13 +1,14 @@
 {
-    "name": "Space.Kulibin.DialogSystem",
+    "name": "Space.Kulibin.DialogSystem.Editor",
     "rootNamespace": "",
     "references": [
-        "Unity.TextMeshPro",
-        "Unity.InputSystem",
-        "Unity.Localization",
-        "Space.Kulibin.MessageBus"
+        "GUID:eec0964c48f6f4e40bc3ec2257ccf8c5",
+        "GUID:fceeef94f31ee254496a82a2dcbcf7e8",
+        "GUID:2e77701fe0ceda44fb763f03ee704c37"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

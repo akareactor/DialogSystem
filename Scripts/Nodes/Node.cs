@@ -5,6 +5,10 @@ using UnityEngine;
 namespace KulibinSpace.DialogSystem {
     
     public class Node : ScriptableObject {
+        // 2025-07-14 18:36:00 for import-export
+        [SerializeField, HideInInspector] private string guid = System.Guid.NewGuid().ToString();
+        public string Guid => guid;
+        //
         [HideInInspector] public DialogNodeGraph nodeGraph;
         [HideInInspector] public Rect rect = new();
         [HideInInspector] public bool isDragging;
