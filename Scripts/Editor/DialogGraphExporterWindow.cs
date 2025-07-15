@@ -129,10 +129,11 @@ namespace KulibinSpace.DialogSystem {
                     var answerData = new AnswerNodeData {
                         guid = answerNode.Guid,
                     };
-                    for (int i = 0; i < answerNode.Answers.Count; i++) {
+                    var answers = answerNode.RawAnswers;
+                    for (int i = 0; i < answers.Count; i++) {
                         var key = Key(answerNode.answers[i].stringRef);
                         if (key == "" && generateLocalization) key = $"@answer_{i}_#{answerNode.Guid}";
-                        var answer = answerNode.Answers[i];
+                        var answer = answers[i];
                         var localized = new AnswerData {
                             text = answer,
                             key = key,

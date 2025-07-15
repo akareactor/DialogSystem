@@ -12,24 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
+  guid: 4c40997c-6661-4edd-b8ce-3b853a02c2ca
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 834
-    y: 397
+    x: 686
+    y: 394
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Test
     text: Sentence 2
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 8775934717929378674}
   childNodes: []
-  isExternalFunc: 0
-  externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-2330080666154760326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,24 +54,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
+  guid: adfa6d78-08c1-40e7-a0a8-dbba0db48652
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 828
-    y: 160
+    x: 680
+    y: 157
     width: 250
     height: 80
   isDragging: 0
   isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Test
     text: Sentence 1
-    characterSprite: {fileID: 0}
   parentNodes:
   - {fileID: 8775934717929378674}
   childNodes: []
-  isExternalFunc: 0
-  externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +96,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
   m_Name: Sentence to Answer to Sentences
   m_EditorClassIdentifier: 
+  characterName: 
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: characterName
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  characterSprite: {fileID: 0}
   nodes:
   - {fileID: 8775934717929378674}
   - {fileID: -2330080666154760326}
@@ -79,6 +114,9 @@ MonoBehaviour:
   - {fileID: 4024215870257554165}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4024215870257554165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,24 +129,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
+  guid: 7d2425a0-3813-45bc-9dc5-79f545be88f9
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 81
-    y: 289
+    x: -67
+    y: 286
     width: 250
     height: 80
   isDragging: 0
   isSelected: 1
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sentence:
-    characterName: Test
     text: Input sentence
-    characterSprite: {fileID: 0}
   parentNodes: []
   childNodes:
   - {fileID: 8775934717929378674}
-  isExternalFunc: 0
-  externalFunctionName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &8775934717929378674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,20 +171,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
   m_Name: Answer Node
   m_EditorClassIdentifier: 
+  guid: 4a0a84ba-05e2-47a8-8f67-0e3f6a30cf96
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 456
-    y: 275
-    width: 250
+    x: 308
+    y: 272
+    width: 265
     height: 100
   isDragging: 0
   isSelected: 0
   answers:
-  - Sentence 1
-  - Sentence 2
+  - answer: 
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: 
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   parentSentenceNodes:
   - {fileID: 4024215870257554165}
   childSentenceNodes:
   - {fileID: -2330080666154760326}
   - {fileID: -4045803522548261218}
+  references:
+    version: 2
+    RefIds: []

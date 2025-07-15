@@ -16,8 +16,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 161
-    y: 104
+    x: 124
+    y: 98
     width: 250
     height: 80
   isDragging: 0
@@ -30,14 +30,15 @@ MonoBehaviour:
       m_TableCollectionName: DialogSystemDemo
     m_TableEntryReference:
       m_KeyId: 0
-      m_Key: "@\u0414\u0440\u0435\u0432\u043D\u0438\u0439\u0420\u043E\u0431\u043E\u0442#b0f3f2eb-7711-44cf-ba2e-9f44b0fcc32e"
+      m_Key: '#lorenipsum'
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   sentence:
     text: Hello (edited, not localized)
   parentNodes: []
-  childNodes: []
+  childNodes:
+  - {fileID: -2283767104447091599}
   references:
     version: 2
     RefIds: []
@@ -57,8 +58,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 160
-    y: 252
+    x: 119
+    y: 251
     width: 250
     height: 80
   isDragging: 0
@@ -71,14 +72,16 @@ MonoBehaviour:
       m_TableCollectionName: DialogSystemDemo
     m_TableEntryReference:
       m_KeyId: 0
-      m_Key: '#hello'
+      m_Key: '#hereyouare'
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   sentence:
     text: Hello
-  parentNodes: []
-  childNodes: []
+  parentNodes:
+  - {fileID: -4815568040232282022}
+  childNodes:
+  - {fileID: 213431749196665555}
   references:
     version: 2
     RefIds: []
@@ -130,7 +133,7 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 427
+    x: 426
     y: 170
     width: 265
     height: 100
@@ -143,7 +146,7 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: '#hereyouare'
+        m_Key: '#lorenipsum2'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
@@ -153,11 +156,12 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: '@answer_1_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4'
+        m_Key: '#bye'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  parentSentenceNodes: []
+  parentSentenceNodes:
+  - {fileID: -2283767104447091599}
   childSentenceNodes: []
   references:
     version: 2

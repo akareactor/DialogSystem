@@ -25,12 +25,14 @@ namespace KulibinSpace.DialogSystem {
         private float currentAnswerNodeHeight = 80f;
         private const float additionalAnswerNodeHeight = 20f;
 
-        public List<string> Answers { get { return GetAnswers(); } }
+        public List<string> Answers { get { return GetAnswers(false); } }
+        public List<string> RawAnswers { get { return GetAnswers(true); } }
 
-        List<string> GetAnswers () {
+        List<string> GetAnswers (bool raw) {
             List<string> ret = new();
             foreach (var answer in answers) {
-                if (answer.stringRef.IsEmpty) ret.Add(answer.answer); else ret.Add(answer.stringRef.GetLocalizedString());
+                if (raw) ret.Add(answer.answer);
+                else if (answer.stringRef.IsEmpty) ret.Add(answer.answer); else ret.Add(answer.stringRef.GetLocalizedString());
             }
             return ret;
         }
