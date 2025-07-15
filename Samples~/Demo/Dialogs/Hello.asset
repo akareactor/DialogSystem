@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4815568040232282022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: b0f3f2eb-7711-44cf-ba2e-9f44b0fcc32e
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 161
+    y: 104
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: "@\u0414\u0440\u0435\u0432\u043D\u0438\u0439\u0420\u043E\u0431\u043E\u0442#b0f3f2eb-7711-44cf-ba2e-9f44b0fcc32e"
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Hello (edited, not localized)
+  parentNodes: []
+  childNodes: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-2283767104447091599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  guid: 0e82a1e9-eac6-4b68-b409-3875accd916b
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 160
+    y: 252
+    width: 250
+    height: 80
+  isDragging: 0
+  isSelected: 0
+  sentenceSignal:
+    m_PersistentCalls:
+      m_Calls: []
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: '#hello'
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sentence:
+    text: Hello
+  parentNodes: []
+  childNodes: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
+  m_Name: Hello
+  m_EditorClassIdentifier: 
+  characterName: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0420\u043E\u0431\u043E\u0442"
+  stringRef:
+    m_TableReference:
+      m_TableCollectionName: DialogSystemDemo
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: characterName
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  characterSprite: {fileID: 0}
+  nodes:
+  - {fileID: -4815568040232282022}
+  - {fileID: -2283767104447091599}
+  - {fileID: 213431749196665555}
+  nodeToDrawLineFrom: {fileID: 0}
+  linePosition: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &213431749196665555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  guid: 43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 427
+    y: 170
+    width: 265
+    height: 100
+  isDragging: 0
+  isSelected: 1
+  answers:
+  - answer: Here you are
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: '#hereyouare'
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: Answer2 hohoho
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: '@answer_1_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4'
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  parentSentenceNodes: []
+  childSentenceNodes: []
+  references:
+    version: 2
+    RefIds: []

@@ -13,8 +13,7 @@ namespace KulibinSpace.DialogSystem {
 
     public class AnswerNode : Node {
         private int amountOfAnswers = 1;
-        [SerializeField]
-        private List<Answer> answers = new();
+        public List<Answer> answers = new();
         // typed nodes!
         public List<SentenceNode> parentSentenceNodes = new();
         public List<SentenceNode> childSentenceNodes = new();

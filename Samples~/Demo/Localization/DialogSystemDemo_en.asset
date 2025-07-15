@@ -46,6 +46,14 @@ MonoBehaviour:
     m_Localized: Hey there!
     m_Metadata:
       m_Items: []
+  - m_Id: 48532854089441280
+    m_Localized: Hello (edited, localized)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48532854093635584
+    m_Localized: Answer2 ha-ha-ha
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

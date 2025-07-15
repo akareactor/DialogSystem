@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 32059933319168
-    m_Localized: Buenos Dias
+    m_Localized: Buenos Dias!
     m_Metadata:
       m_Items: []
   - m_Id: 33275723636736
@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 46618538663936
-    m_Localized: "Aqu\xED est\xE1s"
+    m_Localized: "(es) Aqu\xED est\xE1s"
     m_Metadata:
       m_Items: []
   - m_Id: 47649980932096
@@ -44,6 +44,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 261428576509952
     m_Localized: "\xA1Hola!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48532854089441280
+    m_Localized: (es) Hello (edited, localized)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48532854093635584
+    m_Localized: (es) Answer2 ha-ha-ha
     m_Metadata:
       m_Items: []
   references:

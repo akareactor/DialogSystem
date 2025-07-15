@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: 63615615-caad-4017-ac4c-24181d2f9099
+  guid: 95c320e1-1014-486f-876e-9c5cb5452e99
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 625
-    y: 398
+    x: 697
+    y: 672
     width: 250
     height: 80
   isDragging: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   sentence:
-    text: Cola for yoy 3
+    text: Cola for yoy
   parentNodes:
   - {fileID: 3450605565850512521}
   childNodes:
@@ -55,12 +55,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: e853e563-6a37-4603-bbf5-2f6a3410d3cb
+  guid: 923e039e-df68-4078-a63e-d9f47e66326e
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 62
-    y: 265
+    x: 113
+    y: 416
     width: 250
     height: 80
   isDragging: 0
@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: 440fdba2-ce0a-45b4-9902-471071887bb7
+  guid: e57b03f2-660e-479a-82cf-1894cf0f793f
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 339
-    y: 268
+    x: 391
+    y: 527
     width: 250
     height: 80
   isDragging: 0
@@ -141,12 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
   m_Name: Answer Node
   m_EditorClassIdentifier: 
-  guid: e5c98487-b7c2-4f18-a2e1-b578c358a81a
+  guid: 07a771f6-c75b-40bb-b2e8-7f780317abed
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 60
-    y: 392
+    x: 100
+    y: 526
     width: 265
     height: 80
   isDragging: 0
@@ -181,12 +181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: e5e6d138-c925-4387-b233-cac441f4c8a1
+  guid: 12654bf6-c9e0-4971-a6fa-3173e195e66a
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 60
-    y: 528
+    x: 106
+    y: 671
     width: 250
     height: 80
   isDragging: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
-  m_Name: New Kulibin Space Dialog System Graph 1
+  m_Name: Dialog manually localized
   m_EditorClassIdentifier: 
   characterName: 
   stringRef:
@@ -264,12 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
   m_Name: Answer Node
   m_EditorClassIdentifier: 
-  guid: d2e4039d-5757-47a7-b673-02829eaf0c3b
+  guid: 9942a880-cb1d-4ffa-a805-a6652d4d5f0c
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 346
-    y: 663
+    x: 384
+    y: 805
     width: 265
     height: 80
   isDragging: 0
@@ -306,12 +306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: 6f74da14-6726-4217-8453-b0d628526efe
+  guid: f6b0274c-3bfe-45d7-a6ba-3d3d706deb81
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 367
-    y: -118
+    x: 387
+    y: 118
     width: 250
     height: 80
   isDragging: 0
@@ -361,16 +361,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
   m_Name: Answer Node
   m_EditorClassIdentifier: 
-  guid: a5214f17-3c41-4dbf-877b-1c2b2c80d7ea
+  guid: 85277909-dac5-4aa1-a624-d8174eee1992
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 361
-    y: 23
+    x: 385
+    y: 217
     width: 265
     height: 140
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   answers:
   - answer: 
     stringRef:
@@ -433,12 +433,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: 6dc419a6-dd5e-48ef-856f-91d65a5844c7
+  guid: 00edf312-91f6-40ed-85de-718343ba8c96
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 371
-    y: -256
+    x: 390
+    y: 15
     width: 250
     height: 80
   isDragging: 0
@@ -480,16 +480,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: 02627017-4462-4915-8c15-fb8d10d4b9e9
+  guid: 3fb01ecd-003a-4c5d-86e0-61c59883f1db
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 632
-    y: 272
+    x: 701
+    y: 415
     width: 250
     height: 80
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentenceSignal:
     m_PersistentCalls:
       m_Calls: []
@@ -523,12 +523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b571c4d2ebc14e8649de4fddbd104, type: 3}
   m_Name: Sentence Node
   m_EditorClassIdentifier: 
-  guid: f512faed-71de-4d63-92fa-90f2cc57eec9
+  guid: 2981f597-5dac-4d73-8d6d-b180443bdf0b
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 351
-    y: 768
+    x: 382
+    y: 917
     width: 250
     height: 80
   isDragging: 0

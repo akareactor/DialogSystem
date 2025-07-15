@@ -1,0 +1,70 @@
+﻿{
+    "characterName": "Древний Робот",
+    "sentences": [
+        {
+            "guid": "b0f3f2eb-7711-44cf-ba2e-9f44b0fcc32e",
+            "text": "Hello (edited, not localized)",
+            "key": "@ДревнийРобот#b0f3f2eb-7711-44cf-ba2e-9f44b0fcc32e",
+            "localized": [
+                {
+                    "locale": "en",
+                    "text": "Hello (edited, localized)"
+                },
+                {
+                    "locale": "es",
+                    "text": "(es) Hello (edited, localized)"
+                }
+            ]
+        },
+        {
+            "guid": "0e82a1e9-eac6-4b68-b409-3875accd916b",
+            "text": "Hello",
+            "key": "#hello",
+            "localized": [
+                {
+                    "locale": "en",
+                    "text": "Hello"
+                },
+                {
+                    "locale": "es",
+                    "text": "Buenos Dias!"
+                }
+            ]
+        }
+    ],
+    "answers": [
+        {
+            "guid": "43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4",
+            "answers": [
+                {
+                    "text": "Here you are",
+                    "key": "#hereyouare",
+                    "localized": [
+                        {
+                            "locale": "en",
+                            "text": "Here you are"
+                        },
+                        {
+                            "locale": "es",
+                            "text": "(es) Aquí estás"
+                        }
+                    ]
+                },
+                {
+                    "text": "Answer2 hohoho",
+                    "key": "@answer_1_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4",
+                    "localized": [
+                        {
+                            "locale": "en",
+                            "text": "Answer2 ha-ha-ha"
+                        },
+                        {
+                            "locale": "es",
+                            "text": "(es) Answer2 ha-ha-ha"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

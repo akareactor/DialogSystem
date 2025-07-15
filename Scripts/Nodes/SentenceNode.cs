@@ -19,23 +19,19 @@ namespace KulibinSpace.DialogSystem {
     }
 
     public class SentenceNode : Node {
-        
         public UnityEvent sentenceSignal; // for scriptable signals
-
         public LocalizedString stringRef = new() { TableReference = "DialogSystemDemo", TableEntryReference = "" };
-
         [SerializeField] private Sentence sentence;
-
         [Space(10)]
         // public? Let it be for debug and visual clarity
         public List<Node> parentNodes = new();
         public List<Node> childNodes = new();
-
         private const float labelFieldSpace = 45f;
         private const float textFieldWidth = 165f;
         private const float textAreaFieldWidth = 220f;
         private const float textFieldHeight = 40;
-
+        //
+        public string RawText { get { return sentence.text; } }
         /// <summary>
         /// Setting sentence text
         /// </summary>
@@ -44,7 +40,6 @@ namespace KulibinSpace.DialogSystem {
         public void SetSentenceText (string text) {
             sentence.text = text;
         }
-
         /// <summary>
         /// Returning sentence text
         /// </summary>
