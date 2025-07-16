@@ -44,6 +44,12 @@ namespace KulibinSpace.DialogSystem {
 
         void OpenDialog () {
             dialogContainer.SetActive(true);
+            // character name
+            if (dialog.stringRef.IsEmpty)
+                characterName.text = dialog.characterName;
+            else
+                characterName.text = dialog.stringRef.GetLocalizedString();
+            //dialog.stringRef.GetLocalizedStringAsync().Completed += completedHandle => { if (completedHandle.Status == AsyncOperationStatus.Succeeded) результатДействия.Invoke(completedHandle.Result); };
         }
 
         public void OutputSentence () {
@@ -53,7 +59,6 @@ namespace KulibinSpace.DialogSystem {
                 snode.sentenceSignal?.Invoke();
                 sentenceText.text = snode.GetSentenceText();
                 sentenceText.maxVisibleCharacters = 0;
-                characterName.text = dialog.characterName;
                 StopAllCoroutines();
                 StartCoroutine(SentenceOutputLikeTerminal());
             } else {
