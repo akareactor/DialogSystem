@@ -11,7 +11,6 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using System;
-using System.Drawing.Printing;
 
 namespace KulibinSpace.DialogSystem {
 
@@ -103,7 +102,11 @@ namespace KulibinSpace.DialogSystem {
 
         private void ExportGraphToJson () {
             var data = new GraphExportData();
-            data.characterName = string.IsNullOrWhiteSpace(graph.characterName) ? "character" : graph.characterName.Replace(" ", "");
+            if (graph.stringRef.IsEmpty) {
+                data.characterName = string.IsNullOrWhiteSpace(graph.characterName) ? "character" : graph.characterName.Replace(" ", "");
+            } else {
+                data.characterName = graph.stringRef.TableEntryReference;
+            }
             var tableCollection = selectedTable;
             foreach (var node in graph.nodes) {
                 if (node is SentenceNode sentenceNode) {
