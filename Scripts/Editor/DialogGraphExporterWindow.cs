@@ -22,7 +22,7 @@ namespace KulibinSpace.DialogSystem {
         private bool generateLocalization = true;
         private TextAsset jsonFile; // JSON-файл с диалогом
 
-        [MenuItem("Tools/Dialog Graph Exporter")]
+        [MenuItem("Tools/Kulibin.Space Dialog Graph Exporter")]
         public static void OpenWindow () {
             GetWindow<DialogGraphExporterWindow>("Dialog Graph Exporter");
         }
