@@ -12,6 +12,7 @@ using System.IO;
 using System.Text;
 using System;
 
+
 namespace KulibinSpace.DialogSystem {
 
     public class DialogGraphExporterWindow : EditorWindow {
@@ -22,7 +23,7 @@ namespace KulibinSpace.DialogSystem {
         private bool generateLocalization = true;
         private TextAsset jsonFile; // JSON-файл с диалогом
 
-        [MenuItem("Tools/Kulibin.Space Dialog Graph Exporter")]
+        [MenuItem("Tools/Kulibin.Space/Dialog Graph Exporter")]
         public static void OpenWindow () {
             GetWindow<DialogGraphExporterWindow>("Dialog Graph Exporter");
         }
@@ -92,6 +93,8 @@ namespace KulibinSpace.DialogSystem {
             public List<AnswerNodeData> answers = new();
         }
 
+        // human-readable key!
+        // Not checks if key existing
         string Key (LocalizedString stringRef) {
             if (!stringRef.IsEmpty) {
                 return stringRef.TableEntryReference.ResolveKeyName(selectedTable.SharedData);
@@ -100,13 +103,28 @@ namespace KulibinSpace.DialogSystem {
             }
         }
 
+        string GetKeyName (LocalizedString stringRef) {
+            if (stringRef == null || stringRef.IsEmpty)
+                return "";
+
+            // Получаем коллекцию таблиц по ссылке
+            var collection = LocalizationEditorSettings.GetStringTableCollection(stringRef.TableReference);
+            if (collection == null)
+                return "";
+
+            var sharedData = collection.SharedData;
+            if (sharedData == null)
+                return "";
+
+            // Пытаемся получить ключ по ID
+            var entry = sharedData.GetEntry(stringRef.TableEntryReference.KeyId);
+            return entry != null ? entry.Key : "";
+        }
+
         private void ExportGraphToJson () {
             var data = new GraphExportData();
-            if (graph.stringRef.IsEmpty) {
-                data.characterName = string.IsNullOrWhiteSpace(graph.characterName) ? "character" : graph.characterName.Replace(" ", "");
-            } else {
-                data.characterName = graph.stringRef.TableEntryReference;
-            }
+            data.characterName = GetKeyName(graph.stringRef);
+            if (data.characterName == "") data.characterName = string.IsNullOrWhiteSpace(graph.characterName) ? "character" : graph.characterName.Replace(" ", "");
             var tableCollection = selectedTable;
             foreach (var node in graph.nodes) {
                 if (node is SentenceNode sentenceNode) {
@@ -134,7 +152,7 @@ namespace KulibinSpace.DialogSystem {
                     };
                     var answers = answerNode.RawAnswers;
                     for (int i = 0; i < answers.Count; i++) {
-                        var key = Key(answerNode.answers[i].stringRef);
+                        var key = GetKeyName(answerNode.answers[i].stringRef);
                         if (key == "" && generateLocalization) key = $"@{data.characterName}_answer_{i}_#{answerNode.Guid}";
                         var answer = answers[i];
                         var localized = new AnswerData {
@@ -169,6 +187,9 @@ namespace KulibinSpace.DialogSystem {
             // Автоматически найдём и подставим JSON в поле
             jsonFile = AssetDatabase.LoadAssetAtPath<TextAsset>(filePath);
             Debug.Log($"Exported to {fileName}");
+            if (generateLocalization) {
+                Debug.Log($"Localization keys generated at {selectedTable.TableCollectionName}");
+            }
         }
 
         private void ImportGraphFromJson (TextAsset file) {
@@ -178,6 +199,10 @@ namespace KulibinSpace.DialogSystem {
             }
 
             var data = JsonUtility.FromJson<GraphExportData>(file.text);
+            int addedSentences = 0;
+            int updatedSentences = 0;
+            int addedAnswers = 0;
+            int updatedAnswers = 0;
 
             foreach (var sentence in data.sentences) {
                 var node = graph.nodes.OfType<SentenceNode>().FirstOrDefault(n => n.Guid == sentence.guid);
@@ -193,10 +218,11 @@ namespace KulibinSpace.DialogSystem {
                             var table = selectedTable.GetTable(new LocaleIdentifier(loc.locale)) as StringTable;
                             if (table == null) continue;
                             var entry = table.GetEntry(sentence.key);
-                            if (entry == null)
-                                entry = table.AddEntry(sentence.key, loc.text);
-                            else
-                                entry.Value = loc.text;
+                            if (entry == null) {
+                                entry = table.AddEntry(sentence.key, loc.text); addedSentences += 1;
+                            } else {
+                                entry.Value = loc.text; updatedSentences += 1;
+                            }
                             EditorUtility.SetDirty(table);
                         }
                     }
@@ -224,11 +250,11 @@ namespace KulibinSpace.DialogSystem {
                                 var table = selectedTable.GetTable(new LocaleIdentifier(loc.locale)) as StringTable;
                                 if (table == null) continue;
                                 var entry = table.GetEntry(ans.key);
-                                if (entry == null)
-                                    entry = table.AddEntry(ans.key, loc.text);
-                                else
-                                    entry.Value = loc.text;
-
+                                if (entry == null) {
+                                    entry = table.AddEntry(ans.key, loc.text); addedAnswers += 1;
+                                } else {
+                                    entry.Value = loc.text; updatedAnswers += 1;
+                                }
                                 EditorUtility.SetDirty(table);
                             }
                         }
@@ -238,7 +264,9 @@ namespace KulibinSpace.DialogSystem {
             }
             EditorUtility.SetDirty(graph);
             AssetDatabase.SaveAssets();
-            Debug.Log("Import complete");
+            Debug.Log($"Imported from {fileName}");
+            Debug.Log($"Localized sentences added {addedSentences}, updated {updatedSentences}");
+            Debug.Log($"Localized answers added {addedAnswers}, updated {updatedAnswers}");
         }
 
         private void EnsureEntryInTable (StringTableCollection collection, Locale locale, string key, string defaultValue) {

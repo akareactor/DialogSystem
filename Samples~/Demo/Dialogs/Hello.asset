@@ -139,7 +139,7 @@ MonoBehaviour:
     width: 265
     height: 100
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   answers:
   - answer: Here you are
     stringRef:
@@ -147,7 +147,7 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: '#lorenipsum2'
+        m_Key: '@TheOldRobo_answer_0_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
@@ -157,7 +157,7 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: '#bye'
+        m_Key: '@TheOldRobo_answer_1_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
@@ -196,7 +196,7 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: 
+        m_Key: '@TheOldRobo_answer_0_#716b1764-a1d1-4383-93f1-a5b7dd9656ca'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
@@ -206,7 +206,7 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: 
+        m_Key: '@TheOldRobo_answer_1_#716b1764-a1d1-4383-93f1-a5b7dd9656ca'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
@@ -216,7 +216,7 @@ MonoBehaviour:
         m_TableCollectionName: DialogSystemDemo
       m_TableEntryReference:
         m_KeyId: 0
-        m_Key: 
+        m_Key: '@TheOldRobo_answer_2_#716b1764-a1d1-4383-93f1-a5b7dd9656ca'
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []

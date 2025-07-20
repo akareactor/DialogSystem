@@ -70,6 +70,26 @@ MonoBehaviour:
     m_Localized: 11111
     m_Metadata:
       m_Items: []
+  - m_Id: 50410113637277696
+    m_Localized: Here you are
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50410113670832128
+    m_Localized: Answer2 hohoho
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50410113670832129
+    m_Localized: 11111
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50410113670832130
+    m_Localized: 2222
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50410113670832131
+    m_Localized: 3333
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
