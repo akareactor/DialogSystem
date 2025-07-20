@@ -103,12 +103,12 @@ namespace KulibinSpace.DialogSystem {
 
         private void ExportGraphToJson () {
             var data = new GraphExportData();
-            data.characterName = graph.characterName;
+            data.characterName = string.IsNullOrWhiteSpace(graph.characterName) ? "character" : graph.characterName.Replace(" ", "");
             var tableCollection = selectedTable;
             foreach (var node in graph.nodes) {
                 if (node is SentenceNode sentenceNode) {
                     var key = Key(sentenceNode.stringRef);
-                    if (key == "" && generateLocalization) key = $"@{(string.IsNullOrWhiteSpace(graph.characterName) ? "character" : graph.characterName.Replace(" ", ""))}#{sentenceNode.Guid}";
+                    if (key == "" && generateLocalization) key = $"@{data.characterName}#{sentenceNode.Guid}";
                     var sentenceData = new SentenceNodeData {
                         guid = sentenceNode.Guid,
                         text = sentenceNode.RawText,
@@ -132,7 +132,7 @@ namespace KulibinSpace.DialogSystem {
                     var answers = answerNode.RawAnswers;
                     for (int i = 0; i < answers.Count; i++) {
                         var key = Key(answerNode.answers[i].stringRef);
-                        if (key == "" && generateLocalization) key = $"@answer_{i}_#{answerNode.Guid}";
+                        if (key == "" && generateLocalization) key = $"@{data.characterName}_answer_{i}_#{answerNode.Guid}";
                         var answer = answers[i];
                         var localized = new AnswerData {
                             text = answer,

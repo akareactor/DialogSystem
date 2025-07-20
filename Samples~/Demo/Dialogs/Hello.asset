@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ebe14b4466f7c45b8aee71af363865, type: 3}
   m_Name: Hello
   m_EditorClassIdentifier: 
-  characterName: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0420\u043E\u0431\u043E\u0442"
+  characterName: The Old Robo
   stringRef:
     m_TableReference:
       m_TableCollectionName: DialogSystemDemo
@@ -112,6 +112,7 @@ MonoBehaviour:
   - {fileID: -4815568040232282022}
   - {fileID: -2283767104447091599}
   - {fileID: 213431749196665555}
+  - {fileID: 8120405712153976468}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
   references:
@@ -138,7 +139,7 @@ MonoBehaviour:
     width: 265
     height: 100
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   answers:
   - answer: Here you are
     stringRef:
@@ -162,6 +163,64 @@ MonoBehaviour:
       m_LocalVariables: []
   parentSentenceNodes:
   - {fileID: -2283767104447091599}
+  childSentenceNodes: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &8120405712153976468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  guid: 716b1764-a1d1-4383-93f1-a5b7dd9656ca
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 417
+    y: 319
+    width: 265
+    height: 120
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - answer: 11111
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: 2222
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - answer: 3333
+    stringRef:
+      m_TableReference:
+        m_TableCollectionName: DialogSystemDemo
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  parentSentenceNodes: []
   childSentenceNodes: []
   references:
     version: 2
