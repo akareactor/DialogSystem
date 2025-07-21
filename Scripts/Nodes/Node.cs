@@ -14,6 +14,8 @@ namespace KulibinSpace.DialogSystem {
         [HideInInspector] public bool isDragging;
         [HideInInspector] public bool isSelected;
         protected float heightStd;
+        [System.NonSerialized]
+        protected bool isResizing = false;
 
 #if UNITY_EDITOR
 

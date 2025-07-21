@@ -35,14 +35,14 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         private void OnEnable () {
             Selection.selectionChanged += ChangeEditorWindowOnSelection;
-            nodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
+            nodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 15), border = new RectOffset(10, 10, 10, 10) };
             nodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node) as Texture2D;
-            selectedNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
+            selectedNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 15), border = new RectOffset(10, 10, 10, 10) };
             selectedNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode) as Texture2D;
             //
-            sentenceNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
+            sentenceNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 15), border = new RectOffset(10, 10, 10, 10) };
             sentenceNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.Node2) as Texture2D;
-            selectedSentenceNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 5), border = new RectOffset(10, 10, 10, 10) };
+            selectedSentenceNodeStyle = new GUIStyle { padding = new RectOffset(15, 15, 5, 15), border = new RectOffset(10, 10, 10, 10) };
             selectedSentenceNodeStyle.normal.background = EditorGUIUtility.Load(StringConstants.SelectedNode2) as Texture2D;
             //
             labelStyle = new GUIStyle {

@@ -16,10 +16,10 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 124
-    y: 98
-    width: 250
-    height: 80
+    x: 144
+    y: 404
+    width: 260
+    height: 103
   isDragging: 0
   isSelected: 0
   sentenceSignal:
@@ -39,6 +39,7 @@ MonoBehaviour:
   parentNodes: []
   childNodes:
   - {fileID: -2283767104447091599}
+  customSize: {x: 260, y: 103}
   references:
     version: 2
     RefIds: []
@@ -59,11 +60,11 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 119
-    y: 251
-    width: 250
-    height: 80
+    y: 207
+    width: 304
+    height: 103
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   sentenceSignal:
     m_PersistentCalls:
       m_Calls: []
@@ -82,6 +83,7 @@ MonoBehaviour:
   - {fileID: -4815568040232282022}
   childNodes:
   - {fileID: 213431749196665555}
+  customSize: {x: 304, y: 103}
   references:
     version: 2
     RefIds: []
@@ -134,12 +136,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 426
-    y: 170
+    x: 411
+    y: 26
     width: 265
     height: 100
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   answers:
   - answer: Here you are
     stringRef:
@@ -183,8 +185,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 417
-    y: 319
+    x: 430
+    y: 419
     width: 265
     height: 120
   isDragging: 0

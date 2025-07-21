@@ -1,9 +1,7 @@
 #if UNITY_EDITOR
 
 using UnityEditor;
-using UnityEditor.Localization;
 using UnityEngine;
-using UnityEngine.Localization;
 
 namespace KulibinSpace.DialogSystem {
 

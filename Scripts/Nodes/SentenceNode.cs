@@ -30,6 +30,7 @@ namespace KulibinSpace.DialogSystem {
         private const float textFieldWidth = 165f;
         private const float textAreaFieldWidth = 220f;
         private const float textFieldHeight = 40;
+        public Vector2 customSize = new Vector2(200, 100); // начальные размеры
         //
         public string RawText { get { return sentence.text; } }
         /// <summary>
@@ -58,34 +59,107 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="nodeStyle"></param>
         /// <param name="lableStyle"></param>
+        /*
+                public override void Draw (GUIStyle nodeStyle, GUIStyle labelStyle) {
+                    base.Draw(nodeStyle, labelStyle);
+                    // is local here
+                    string currentValue = ""; if (!stringRef.IsEmpty) currentValue = stringRef.GetLocalizedString();
+                    string sentenceTitle = "Sentence";
+                    // stringRef.TableEntryReference.Key --- is EMPTY!!! Do not know WHY!!!
+                    if (currentValue != "") sentenceTitle += " / " + LocalizationSettings.SelectedLocale.name + "";
+                    //
+                    GUILayout.BeginArea(rect, nodeStyle);
+                    EditorGUILayout.LabelField(sentenceTitle, labelStyle);
+                    //DrawCharacterNameFieldHorizontal();
+                    // Draw label and text fields for sentence text
+                    EditorGUILayout.BeginHorizontal();
+                    //EditorGUILayout.LabelField($"Text ", GUILayout.Width(labelFieldSpace));
+                    if (currentValue == "") { // editable sentence
+                        GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
+                        sentence.text = EditorGUILayout.TextArea(sentence.text, textAreaStyle, GUILayout.Width(textAreaFieldWidth), GUILayout.Height(textFieldHeight));
+                    } else { // non-editable localized content
+                        GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+                            wordWrap = true, normal = { textColor = Color.black }
+                        };
+                        GUI.color = new Color(0.8f, 0.8f, 0.8f);
+                        EditorGUILayout.SelectableLabel(currentValue, textAreaStyle, GUILayout.Width(textAreaFieldWidth), GUILayout.Height(textFieldHeight));
+                        GUI.color = Color.white;
+                    }
+                    EditorGUILayout.EndHorizontal();
+                    GUILayout.EndArea();
+                }
+        */
+
         public override void Draw (GUIStyle nodeStyle, GUIStyle labelStyle) {
             base.Draw(nodeStyle, labelStyle);
-            // is local here
-            string currentValue = ""; if (!stringRef.IsEmpty) currentValue = stringRef.GetLocalizedString();
+
+            string currentValue = "";
+            if (!stringRef.IsEmpty)
+                currentValue = stringRef.GetLocalizedString();
+
             string sentenceTitle = "Sentence";
-            // stringRef.TableEntryReference.Key --- is EMPTY!!! Do not know WHY!!!
-            if (currentValue != "") sentenceTitle += " / " + LocalizationSettings.SelectedLocale.name + "";
-            //
+            if (!string.IsNullOrEmpty(currentValue)) sentenceTitle += $" / {LocalizationSettings.SelectedLocale.name}";
+
+            GUIStyle textStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
+            string textToMeasure = string.IsNullOrEmpty(currentValue) ? sentence.text : currentValue;
+
+            float padding = 20f;
+            float maxWidth = 300f;
+            float minWidth = 150f;
+            float minHeight = 80f;
+
+            // Вычисление размера текста
+            float contentWidth = Mathf.Min(maxWidth, textStyle.CalcSize(new GUIContent(textToMeasure)).x + padding);
+            float contentHeight = textStyle.CalcHeight(new GUIContent(textToMeasure), contentWidth);
+            // Автоматическое или ручное изменение размера
+            if (customSize.x < contentWidth) customSize.x = contentWidth;
+            if (customSize.y < contentHeight) customSize.y = contentHeight;
+
+            rect.size = customSize;
+
+            // Рисуем узел
             GUILayout.BeginArea(rect, nodeStyle);
             EditorGUILayout.LabelField(sentenceTitle, labelStyle);
-            //DrawCharacterNameFieldHorizontal();
-            // Draw label and text fields for sentence text
-            EditorGUILayout.BeginHorizontal();
-            //EditorGUILayout.LabelField($"Text ", GUILayout.Width(labelFieldSpace));
-            if (currentValue == "") { // editable sentence
-                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
-                sentence.text = EditorGUILayout.TextArea(sentence.text, textAreaStyle, GUILayout.Width(textAreaFieldWidth), GUILayout.Height(textFieldHeight));
-            } else { // non-editable localized content
-                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
-                    wordWrap = true, normal = { textColor = Color.black }
-                };
-                GUI.color = new Color(0.8f, 0.8f, 0.8f);
-                EditorGUILayout.SelectableLabel(currentValue, textAreaStyle, GUILayout.Width(textAreaFieldWidth), GUILayout.Height(textFieldHeight));
+
+            if (string.IsNullOrEmpty(currentValue)) {
+                sentence.text = EditorGUILayout.TextArea(sentence.text, textStyle, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
+            } else {
+                GUIStyle readonlyStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true, normal = { textColor = Color.black } };
+                GUI.color = new Color(0.85f, 0.85f, 0.85f);
+                EditorGUILayout.SelectableLabel(currentValue, readonlyStyle, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
                 GUI.color = Color.white;
             }
-            EditorGUILayout.EndHorizontal();
+
             GUILayout.EndArea();
+
+            // === Ручное масштабирование узла ===
+            const float resizeHandleSize = 14f;
+            Rect resizeHandleRect = new Rect(rect.xMax - resizeHandleSize, rect.yMax - resizeHandleSize, resizeHandleSize, resizeHandleSize);
+
+            EditorGUIUtility.AddCursorRect(resizeHandleRect, MouseCursor.ResizeUpLeft);
+
+            if (Event.current.type == EventType.MouseDown && resizeHandleRect.Contains(Event.current.mousePosition)) {
+                isResizing = true;
+                Event.current.Use();
+            }
+
+            if (isResizing && Event.current.type == EventType.MouseDrag) {
+                Vector2 newSize = customSize + Event.current.delta;
+                newSize.x = Mathf.Max(minWidth, newSize.x);
+                newSize.y = Mathf.Max(minHeight, newSize.y);
+
+                Vector2 deltaSize = newSize - customSize;          // сколько реально прибавилось
+                rect.size = newSize;                               // новый размер
+                rect.position -= deltaSize;                        // «прижимаем» левый-верхний угол к старому месту
+
+                customSize = newSize;
+                Event.current.Use();
+            }
+
+            if (Event.current.type == EventType.MouseUp) isResizing = false;
         }
+
+
 
         /// <summary>
         /// Draw label and text fields for char name
