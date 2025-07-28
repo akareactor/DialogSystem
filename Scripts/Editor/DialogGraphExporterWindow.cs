@@ -224,6 +224,7 @@ namespace KulibinSpace.DialogSystem {
                                 entry.Value = loc.text; updatedSentences += 1;
                             }
                             EditorUtility.SetDirty(table);
+                            EditorUtility.SetDirty(table.SharedData);
                         }
                     }
                 }
@@ -256,6 +257,7 @@ namespace KulibinSpace.DialogSystem {
                                     entry.Value = loc.text; updatedAnswers += 1;
                                 }
                                 EditorUtility.SetDirty(table);
+                                EditorUtility.SetDirty(table.SharedData);
                             }
                         }
                         node.answers[i] = a;
