@@ -16,12 +16,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 144
-    y: 404
+    x: 169
+    y: 131
     width: 260
     height: 103
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   sentenceSignal:
     m_PersistentCalls:
       m_Calls: []
@@ -59,12 +59,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 119
-    y: 207
+    x: 512
+    y: 262
     width: 304
     height: 103
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentenceSignal:
     m_PersistentCalls:
       m_Calls: []
@@ -81,8 +81,7 @@ MonoBehaviour:
     text: Hello
   parentNodes:
   - {fileID: -4815568040232282022}
-  childNodes:
-  - {fileID: 213431749196665555}
+  childNodes: []
   customSize: {x: 304, y: 103}
   references:
     version: 2
@@ -113,117 +112,8 @@ MonoBehaviour:
   nodes:
   - {fileID: -4815568040232282022}
   - {fileID: -2283767104447091599}
-  - {fileID: 213431749196665555}
-  - {fileID: 8120405712153976468}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &213431749196665555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
-  m_Name: Answer Node
-  m_EditorClassIdentifier: 
-  guid: 43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 411
-    y: 26
-    width: 265
-    height: 100
-  isDragging: 0
-  isSelected: 0
-  answers:
-  - answer: Here you are
-    stringRef:
-      m_TableReference:
-        m_TableCollectionName: DialogSystemDemo
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: '@TheOldRobo_answer_0_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4'
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  - answer: Answer2 hohoho
-    stringRef:
-      m_TableReference:
-        m_TableCollectionName: DialogSystemDemo
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: '@TheOldRobo_answer_1_#43d1ba18-cbfe-4ebe-a14c-37a3b7ab95b4'
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  parentSentenceNodes:
-  - {fileID: -2283767104447091599}
-  childSentenceNodes: []
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &8120405712153976468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0b1b9ce2509bc419d8d4266b47c493, type: 3}
-  m_Name: Answer Node
-  m_EditorClassIdentifier: 
-  guid: 716b1764-a1d1-4383-93f1-a5b7dd9656ca
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 430
-    y: 419
-    width: 265
-    height: 120
-  isDragging: 0
-  isSelected: 0
-  answers:
-  - answer: 11111
-    stringRef:
-      m_TableReference:
-        m_TableCollectionName: DialogSystemDemo
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: '@TheOldRobo_answer_0_#716b1764-a1d1-4383-93f1-a5b7dd9656ca'
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  - answer: 2222
-    stringRef:
-      m_TableReference:
-        m_TableCollectionName: DialogSystemDemo
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: '@TheOldRobo_answer_1_#716b1764-a1d1-4383-93f1-a5b7dd9656ca'
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  - answer: 3333
-    stringRef:
-      m_TableReference:
-        m_TableCollectionName: DialogSystemDemo
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: '@TheOldRobo_answer_2_#716b1764-a1d1-4383-93f1-a5b7dd9656ca'
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  parentSentenceNodes: []
-  childSentenceNodes: []
   references:
     version: 2
     RefIds: []

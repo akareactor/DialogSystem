@@ -119,7 +119,7 @@ namespace KulibinSpace.DialogSystem {
                 if (node.GetType() == typeof(AnswerNode)) {
                     AnswerNode answerNode = (AnswerNode)node;
                     answerNode.CalculateAmountOfAnswers();
-                    answerNode.CalculateAnswerNodeHeight();
+                    //answerNode.CalculateAnswerNodeHeight();
                 }
                 if (node.GetType() == typeof(SentenceNode)) {
                     SentenceNode sentenceNode = (SentenceNode)node;

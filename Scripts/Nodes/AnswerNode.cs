@@ -19,11 +19,20 @@ namespace KulibinSpace.DialogSystem {
         public List<SentenceNode> childSentenceNodes = new();
         private const float lableFieldSpace = 18f;
         private const float textFieldWidth = 220f;
-        private const float textFieldHeight = 20;
+        //        private const float textFieldHeight = 20;
         private const float answerNodeWidth = 265f;
-        private const float answerNodeHeight = 80f;
-        private float currentAnswerNodeHeight = 80f;
-        private const float additionalAnswerNodeHeight = 20f;
+        //        private const float answerNodeHeight = 80f;
+        //        private float currentAnswerNodeHeight = 80f;
+        //        private const float additionalAnswerNodeHeight = 20f;
+
+        // Удалите эти константы:
+        // private const float textFieldHeight = 20;
+        // private const float answerNodeHeight = 80f;
+        // private float currentAnswerNodeHeight = 80f;
+        // private const float additionalAnswerNodeHeight = 20f;
+
+        // Добавьте переменную для хранения высоты каждого ответа:
+        private List<float> answerHeights = new List<float>();
 
         public List<string> Answers { get { return GetAnswers(false); } }
         public List<string> RawAnswers { get { return GetAnswers(true); } }
@@ -65,11 +74,27 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name = "nodeStyle" ></ param >
         /// < param name="labelStyle"></param>
+
         public override void Draw (GUIStyle nodeStyle, GUIStyle labelStyle) {
+/*
             base.Draw(nodeStyle, labelStyle);
             childSentenceNodes.RemoveAll(item => item == null);
             rect.size = new Vector2(answerNodeWidth, currentAnswerNodeHeight);
             GUILayout.BeginArea(rect, nodeStyle);
+*/
+            base.Draw(nodeStyle, labelStyle);
+            childSentenceNodes.RemoveAll(item => item == null);
+
+            // Рассчитываем общую высоту на основе высоты каждого ответа
+            float totalHeight = 50f; // Базовая высота (заголовок + кнопки)
+            foreach (float height in answerHeights) {
+                totalHeight += height + 4f; // Добавляем отступ между ответами
+            }
+            rect.size = new Vector2(answerNodeWidth, totalHeight);
+
+            GUILayout.BeginArea(rect, nodeStyle);
+            // Остальной код метода Draw...
+
 
             // label
             GUIStyle answerLabelStyle = new GUIStyle(labelStyle);
@@ -86,6 +111,7 @@ namespace KulibinSpace.DialogSystem {
 
             GUILayout.EndArea();
         }
+
 
         Answer NewAnswerItem () {
             return new Answer {
@@ -112,6 +138,7 @@ namespace KulibinSpace.DialogSystem {
         /// </summary>
         /// <param name="answerNumber"></param>
         /// <param name="iconPathOrName"></param>
+/*
         private void DrawAnswerLine (int answerNumber, string iconPathOrName) {
             EditorGUILayout.BeginHorizontal();
             Answer a = answers[answerNumber - 1];
@@ -134,6 +161,53 @@ namespace KulibinSpace.DialogSystem {
             EditorGUILayout.LabelField(EditorGUIUtility.IconContent(iconPathOrName), GUILayout.Width(lableFieldSpace));
             EditorGUILayout.EndHorizontal();
         }
+*/
+        // В методе DrawAnswerLine замените расчет высоты:
+        private void DrawAnswerLine (int answerNumber, string iconPathOrName) {
+            EditorGUILayout.BeginHorizontal();
+            Answer a = answers[answerNumber - 1];
+            string currentValue = "";
+            if (!a.stringRef.IsEmpty) currentValue = a.stringRef.GetLocalizedString();
+
+            if (currentValue == "") {
+                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
+                // Сохраняем предыдущую высоту, если она уже была рассчитана
+                float prevHeight = answerHeights.Count > answerNumber - 1 ? answerHeights[answerNumber - 1] : EditorGUIUtility.singleLineHeight * 2;
+                // Рассчитываем новую высоту на основе содержимого
+                float newHeight = textAreaStyle.CalcHeight(new GUIContent(a.answer), textFieldWidth);
+                newHeight = Mathf.Max(newHeight, EditorGUIUtility.singleLineHeight * 2); // Минимальная высота
+
+                // Обновляем высоту для этого ответа
+                if (answerHeights.Count > answerNumber - 1) {
+                    answerHeights[answerNumber - 1] = newHeight;
+                } else {
+                    answerHeights.Add(newHeight);
+                }
+
+                a.answer = EditorGUILayout.TextArea(a.answer, textAreaStyle, GUILayout.Width(textFieldWidth), GUILayout.Height(newHeight));
+                answers[answerNumber - 1] = a;
+            } else {
+                GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea) {
+                    wordWrap = true,
+                    normal = { textColor = Color.black }
+                };
+                float height = textAreaStyle.CalcHeight(new GUIContent(currentValue), textFieldWidth);
+                height = Mathf.Max(height, EditorGUIUtility.singleLineHeight); // Минимальная высота
+
+                GUI.color = new Color(0.8f, 0.8f, 0.8f);
+                EditorGUILayout.SelectableLabel(currentValue, textAreaStyle, GUILayout.Width(textFieldWidth), GUILayout.Height(height));
+                GUI.color = Color.white;
+
+                if (answerHeights.Count > answerNumber - 1) {
+                    answerHeights[answerNumber - 1] = height;
+                } else {
+                    answerHeights.Add(height);
+                }
+            }
+            EditorGUILayout.LabelField(EditorGUIUtility.IconContent(iconPathOrName), GUILayout.Width(lableFieldSpace));
+            EditorGUILayout.EndHorizontal();
+        }
+
 
         private void DrawAnswerNodeButtons () {
             GUILayout.BeginHorizontal();
@@ -149,30 +223,52 @@ namespace KulibinSpace.DialogSystem {
             GUILayout.EndHorizontal();
         }
 
-        /// <summary>
-        /// Increase amount of answers and node height
-        /// </summary>
+        // Обновите методы IncreaseAmountOfAnswers и DecreaseAmountOfAnswers:
         private void IncreaseAmountOfAnswers () {
             amountOfAnswers++;
             answers.Add(NewAnswerItem());
-            currentAnswerNodeHeight += additionalAnswerNodeHeight;
+            answerHeights.Add(EditorGUIUtility.singleLineHeight * 2); // Начальная высота для нового ответа
         }
 
-        /// <summary>
-        /// Decrease amount of answers and node height 
-        /// </summary>
         private void DecreaseAmountOfAnswers () {
-            if (answers.Count == 1) {
-                return;
-            }
-            answers.RemoveAt(amountOfAnswers - 1);
-            if (childSentenceNodes.Count == amountOfAnswers) {
-                childSentenceNodes[amountOfAnswers - 1].RemoveFromParents(this);
-                childSentenceNodes.RemoveAt(amountOfAnswers - 1);
-            }
+            if (answers.Count == 1) return;
             amountOfAnswers--;
-            currentAnswerNodeHeight -= additionalAnswerNodeHeight;
+            answers.RemoveAt(answers.Count - 1);
+            if (answerHeights.Count > amountOfAnswers) {
+                answerHeights.RemoveAt(answerHeights.Count - 1);
+            }
+            if (childSentenceNodes.Count == amountOfAnswers + 1) {
+                childSentenceNodes[amountOfAnswers].RemoveFromParents(this);
+                childSentenceNodes.RemoveAt(amountOfAnswers);
+            }
         }
+
+        /*
+                /// <summary>
+                /// Increase amount of answers and node height
+                /// </summary>
+                private void IncreaseAmountOfAnswers () {
+                    amountOfAnswers++;
+                    answers.Add(NewAnswerItem());
+                    currentAnswerNodeHeight += additionalAnswerNodeHeight;
+                }
+
+                /// <summary>
+                /// Decrease amount of answers and node height 
+                /// </summary>
+                private void DecreaseAmountOfAnswers () {
+                    if (answers.Count == 1) {
+                        return;
+                    }
+                    answers.RemoveAt(amountOfAnswers - 1);
+                    if (childSentenceNodes.Count == amountOfAnswers) {
+                        childSentenceNodes[amountOfAnswers - 1].RemoveFromParents(this);
+                        childSentenceNodes.RemoveAt(amountOfAnswers - 1);
+                    }
+                    amountOfAnswers--;
+                    currentAnswerNodeHeight -= additionalAnswerNodeHeight;
+                }
+        */
 
         /// <summary>
         /// Adding nodeToAdd Node to the parentSentenceNode field
@@ -207,13 +303,14 @@ namespace KulibinSpace.DialogSystem {
         /// <summary>
         /// Calculate answer node height based on amount of answers
         /// </summary>
+/*
         public void CalculateAnswerNodeHeight () {
             currentAnswerNodeHeight = answerNodeHeight;
             for (int i = 0; i < amountOfAnswers - 1; i++) {
                 currentAnswerNodeHeight += additionalAnswerNodeHeight;
             }
         }
-
+*/
         private bool CanAddToChildConnectedNode (SentenceNode par) {
             bool ret = childSentenceNodes.Count < amountOfAnswers && !par.IsConnectedToChildren(this) && !par.IsConnectedToParent(this);
             return ret;
