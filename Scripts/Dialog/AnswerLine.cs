@@ -17,6 +17,10 @@ namespace KulibinSpace.DialogSystem {
             answerButton.onClick.AddListener(() => action.Invoke(snode));
         }
 
+        public void SetAnswer (string answer) {
+            answerText.text = answer;
+        }
+
     }
 
 }
